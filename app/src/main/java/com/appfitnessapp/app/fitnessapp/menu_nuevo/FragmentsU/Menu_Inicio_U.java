@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.appfitnessapp.app.fitnessapp.Usuario.FeedSinRegistro.Asesoria;
 import com.appfitnessapp.app.fitnessapp.Usuario.FeedSinRegistro.HomeSinRegistro;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.AsesoriaRegistro;
 import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.Home;
 import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
 
@@ -26,7 +27,7 @@ public class Menu_Inicio_U extends Fragment {
     LinearLayout btnAsesoria, btnMktPlace;
 
 
-    public Menu_Inicio_U() {
+    public  Menu_Inicio_U() {
         // Required empty public constructor
     }
 
@@ -49,7 +50,7 @@ public class Menu_Inicio_U extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), QuienAsesoria.class);
+                Intent intent = new Intent(getActivity(), AsesoriaRegistro.class);
                 startActivity(intent);
 
             }

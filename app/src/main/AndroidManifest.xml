@@ -22,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Admin.EditarAsesoria"></activity>
+        <activity android:name=".Admin.AdminDiaTabla"></activity>
+        <activity android:name=".Admin.AdminEditarEjercicio"/>
+        <activity android:name=".Admin.EditarAsesoria" />
         <activity android:name=".Admin.AgregarPlanes" />
         <activity android:name=".Admin.AdminPlanes" />
         <activity

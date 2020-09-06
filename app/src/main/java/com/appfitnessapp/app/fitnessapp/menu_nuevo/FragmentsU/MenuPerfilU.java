@@ -439,7 +439,7 @@ public class MenuPerfilU extends Fragment {
 
                             txtNombre.setText(usuarios.getNombre_usuario());
                             if (usuarios.getEstatura().equals("nil")) {
-                                txtAltura.setText("");
+                                txtAltura.setText("Sin Registro");
 
                             } else {
                                 txtAltura.setText(usuarios.getEstatura());
@@ -447,7 +447,7 @@ public class MenuPerfilU extends Fragment {
                             }
 
                             if (usuarios.getObjetivo().equals("nil")) {
-                                txtObjetivo.setText("");
+                                txtObjetivo.setText("Sin Registro");
 
                             } else {
                                 txtObjetivo.setText(usuarios.getObjetivo());
@@ -455,7 +455,7 @@ public class MenuPerfilU extends Fragment {
                             }
 
                             if (usuarios.getPeso_actual().equals("nil")) {
-                                txtPeso.setText("");
+                                txtPeso.setText("Sin Registro");
 
                             } else {
                                 txtPeso.setText(usuarios.getPeso_actual());

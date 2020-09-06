@@ -588,6 +588,33 @@ public class DBProvider {
     }
 
 
+    //ACtualizar Plan ejercicio
+    public void updateDescripcionEjercicio(String id, String descripcion) {
+
+        Map<String, Object> updates = new HashMap<>();
+
+        updates.put(Contants.DESCRIPCION_EJERCICIOS, descripcion);
+        tablaPlanEntrenamiento().child(id).updateChildren(updates);
+    }
+
+    //ACtualizar Plan ejercicio
+    public void updateMinEjercicio(String id, String minutos) {
+
+        Map<String, Object> updates = new HashMap<>();
+
+        updates.put(Contants.MIN_EJERCICIO, minutos);
+        tablaPlanEntrenamiento().child(id).updateChildren(updates);
+    }
+
+    //ACtualizar Plan ejercicio
+    public void updateNumeroEjercicio(String id, String numero) {
+
+        Map<String, Object> updates = new HashMap<>();
+
+        updates.put(Contants.NUM_EJERCICIOS, numero);
+        tablaPlanEntrenamiento().child(id).updateChildren(updates);
+    }
+
 
     //tabla Ejercicios solos
     public void subirImagenesEjercicios(String imagen1,String imagen2,String imagen3,String id_plan,String id_ejercicio){

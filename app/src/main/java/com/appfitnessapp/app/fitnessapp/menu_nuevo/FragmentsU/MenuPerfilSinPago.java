@@ -122,7 +122,7 @@ public class MenuPerfilSinPago extends Fragment {
 
 
                             if (usuarios.getEstatura().equals("nil")){
-                                txtAltura.setText("");
+                                txtAltura.setText("Sin Registro");
 
                             }
                             else {
@@ -131,7 +131,7 @@ public class MenuPerfilSinPago extends Fragment {
                             }
 
                             if (usuarios.getObjetivo().equals("nil")){
-                                txtObjetivo.setText("");
+                                txtObjetivo.setText("Sin Registro");
 
                             }
                             else {
@@ -140,7 +140,7 @@ public class MenuPerfilSinPago extends Fragment {
                             }
 
                             if (usuarios.getPeso_actual().equals("nil")){
-                                txtPeso.setText("");
+                                txtPeso.setText("Sin Registro");
 
                             }
                             else {

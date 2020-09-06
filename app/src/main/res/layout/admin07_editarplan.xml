@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/azul"
+            android:elevation="10dp"
+            android:theme="@style/ToolbarAdmin"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:id="@+id/txtGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:gravity="end"
+                android:padding="5dp"
+                android:text="@string/siguiente"
+                android:textAllCaps="true"
+                android:textColor="@color/blanco"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:id="@+id/linearBoton"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/tag_menu_pendiente"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/btnRecetas"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/negro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:text="@string/recetas" />
+
+
+            <TextView
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/blanco"
+                android:layout_marginEnd="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/workouts" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Descripción de la rutina"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp" />
+
+
+        <EditText
+            android:id="@+id/edtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:ems="10"
+            android:textSize="12sp"
+            android:hint="@string/descripci_n"
+            android:inputType="textMultiLine"
+            android:textColor="@color/negro" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:gravity="start"
+            android:background="@android:color/darker_gray"
+            android:text="@string/datos_del_ejercicio"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/edtTiempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:textSize="13sp"
+            android:background="@drawable/boton_gris_margen"
+            android:padding="10dp"
+            android:textColor="@color/negro"
+            android:hint="@string/minutos"
+            android:inputType="number" />
+
+
+
+
+        <EditText
+            android:id="@+id/edtNumEjercicios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:textSize="13sp"
+            android:background="@drawable/boton_gris_margen"
+            android:padding="10dp"
+            android:textColor="@color/negro"
+            android:hint="@string/numero_de_ejercicios"
+            android:inputType="number" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:padding="8dp"
+            android:gravity="start"
+            android:text="Selecciona un ejercicio para eliminar al usuario o agrega uno nuevo"
+            android:background="@android:color/darker_gray"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_marginEnd="10dp"
+                android:textAlignment="textEnd"
+                android:text="Agregar ejercicio"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+
+            <ImageButton
+                android:id="@+id/btnAgregarEjercicio"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@null"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_agregrar_iconocua" />
+
+
+        </LinearLayout>
+
+
+        <include
+            layout="@layout/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </include>
+
+
+
+    </LinearLayout>
+
+</ScrollView>

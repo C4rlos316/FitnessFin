@@ -315,7 +315,7 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
                             if (usuarios.getId_usuario().equals(id)) {
 
                                 if (usuarios.getEstatura().equals("nil")){
-                                    txtAltura.setText("");
+                                    txtAltura.setText("Sin Registro");
 
                                 }
                                 else {
@@ -325,7 +325,7 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
 
 
                                 if (usuarios.getPeso_actual().equals("nil")){
-                                    txtPeso.setText("");
+                                    txtPeso.setText("Sin Registro");
 
                                 }
                                 else {

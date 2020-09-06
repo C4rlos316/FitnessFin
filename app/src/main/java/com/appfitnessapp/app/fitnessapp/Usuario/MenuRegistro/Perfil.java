@@ -199,7 +199,7 @@ public class Perfil  extends AppCompatActivity {
 
 
                             if (usuarios.getEstatura().equals("nil")){
-                                txtAltura.setText("");
+                                txtAltura.setText("Sin Registro");
 
                             }
                             else {
@@ -208,7 +208,7 @@ public class Perfil  extends AppCompatActivity {
                             }
 
                             if (usuarios.getObjetivo().equals("nil")){
-                                txtObjetivo.setText("");
+                                txtObjetivo.setText("Sin Registro");
 
                             }
                             else {
@@ -217,7 +217,7 @@ public class Perfil  extends AppCompatActivity {
                             }
 
                             if (usuarios.getPeso_actual().equals("nil")){
-                                txtPeso.setText("");
+                                txtPeso.setText("Sin Registro");
 
                             }
                             else {

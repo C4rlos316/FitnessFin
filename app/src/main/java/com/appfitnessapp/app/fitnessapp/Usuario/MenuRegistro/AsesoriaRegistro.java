@@ -38,6 +38,7 @@ import com.appfitnessapp.app.fitnessapp.Usuario.MetodoPago;
 import com.appfitnessapp.app.fitnessapp.Usuario.TipoPlanes;
 import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
 import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioPerfil;
+import com.appfitnessapp.app.fitnessapp.menu_nuevo.FragmentsU.QuienAsesoria;
 import com.appfitnessapp.app.fitnessapp.videoplayer.VideoPlayer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -214,13 +215,10 @@ public class AsesoriaRegistro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(AsesoriaRegistro.this, TipoPlanes.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.move, R.anim.move_leeft);
 
+                Intent intent = new Intent(AsesoriaRegistro.this, QuienAsesoria.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.move, R.anim.move_leeft);
 
             }
         });
@@ -261,14 +259,43 @@ public class AsesoriaRegistro extends AppCompatActivity {
                             precioTotal=asesorias.getCosto_asesoria();
                             txtPrecio.setText("$"+asesorias.getCosto_asesoria());
                             txtPrecioFinal.setText("$"+asesorias.getCosto_asesoria());
-                            txtDescripcion.setText(asesorias.getDescripcion_asesoria());
-                            txtDescripcionRutina.setText(asesorias.getRutinas_descripcion());
-                            txtDescripcionAlimentos.setText(asesorias.getAlimentos_descripcion());
+
+
                             videoUrl=asesorias.getVideo_explicativo();
                             Picasso.get().load(asesorias.getImagen_portada()).into(imgAsesoria);
                             Picasso.get().load(asesorias.getRutinas_imagen()).into(imgEjercicios);
                             Picasso.get().load(asesorias.getAlimentos_imagen()).into(imgAlimentos);
                             Picasso.get().load(asesorias.getImagen_portada()).into(videoView);
+
+
+
+                            if (asesorias.getDescripcion_asesoria().equals("nil")){
+
+                                txtDescripcion.setText("Sin descripción");
+
+                            }
+                            else {
+                                txtDescripcion.setText(asesorias.getDescripcion_asesoria());
+
+                            }
+
+                            if (asesorias.getRutinas_descripcion().equals("nil")){
+                                txtDescripcionRutina.setText("Sin descripción");
+
+                            }
+                            else {
+                                txtDescripcionRutina.setText(asesorias.getRutinas_descripcion());
+
+                            }
+
+                            if (asesorias.getAlimentos_descripcion().equals("nil")){
+                                txtDescripcionAlimentos.setText("Sin descripción");
+
+                            }
+                            else {
+                                txtDescripcionAlimentos.setText(asesorias.getAlimentos_descripcion());
+
+                            }
 
 
                         }
@@ -393,6 +420,8 @@ public class AsesoriaRegistro extends AppCompatActivity {
     }
 
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -405,20 +434,12 @@ public class AsesoriaRegistro extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     public void onBackPressed() {
-        Intent intent;
-        intent = new Intent(this, Home.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
         finish();
-        overridePendingTransition(
-                getIntent().getIntExtra("anim id in", R.anim.move_in),
-                getIntent().getIntExtra("anim id out", R.anim.move_leeft_in));
-
     }
-
 
 
 

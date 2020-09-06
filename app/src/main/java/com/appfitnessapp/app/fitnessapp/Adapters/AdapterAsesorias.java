@@ -76,8 +76,22 @@ public class AdapterAsesorias extends RecyclerView.Adapter<AdapterAsesorias.Ases
 
 
         holder.txtNombre.setText(asesoria.getNombre_usuario());
-        holder.txtKilos.setText(asesoria.getPeso_actual());
-        holder.txtObjetivo.setText(asesoria.getObjetivo());
+
+
+        if (asesoria.getObjetivo().equals("nil")) {
+            holder.txtObjetivo.setText("Sin registro");
+
+        } else {
+            holder.txtObjetivo.setText(asesoria.getObjetivo());
+
+        }
+        if (asesoria.getPeso_actual().equals("nil")) {
+            holder.txtKilos.setText("Sin Registro");
+
+        } else {
+            holder.txtKilos.setText(asesoria.getPeso_actual());
+
+        }
 
         if (!asesoria.getFoto_usuario().equals("nil")){
 

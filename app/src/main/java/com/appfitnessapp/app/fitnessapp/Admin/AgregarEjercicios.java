@@ -198,11 +198,7 @@ public class AgregarEjercicios extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i  = new Intent(AgregarEjercicios.this,AsesoriasPendientes.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                Toast.makeText(AgregarEjercicios.this, "Se subio correctamente tu plan.", Toast.LENGTH_SHORT).show();
-                finish();
+
 
             }
         });
@@ -254,6 +250,11 @@ public class AgregarEjercicios extends AppCompatActivity {
                                 dbProvider.subirEjerciciosSolos(nombre_ejercicio,rondas,repeticiones,uri.toString(),idEjercicioSolo);
                                 progressDialog.dismiss();
                                 Toast.makeText(AgregarEjercicios.this, "Se subió correctamente la información", Toast.LENGTH_SHORT).show();
+                                Intent i  = new Intent(AgregarEjercicios.this,AsesoriasPendientes.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                                Toast.makeText(AgregarEjercicios.this, "Se subio correctamente tu plan.", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         });
 

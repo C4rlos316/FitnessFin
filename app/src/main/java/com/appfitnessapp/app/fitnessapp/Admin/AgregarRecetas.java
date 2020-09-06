@@ -147,11 +147,14 @@ public class AgregarRecetas extends AppCompatActivity {
         btnWorkouts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AgregarRecetas.this, EscogerPlan.class);
+
+
+                Intent intent = new Intent(AgregarRecetas.this, AdminDiaTabla.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("id",id);
                 intent.putExtras(bundle);
                 startActivity(intent);
+
             }
         });
 

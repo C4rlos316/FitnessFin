@@ -263,15 +263,43 @@ public class Menu_Asesorias_U extends Fragment {
                             precioTotal=asesorias.getCosto_asesoria();
                             txtPrecio.setText("$"+asesorias.getCosto_asesoria());
                             txtPrecioFinal.setText("$"+asesorias.getCosto_asesoria());
-                            txtDescripcion.setText(asesorias.getDescripcion_asesoria());
-                            txtDescripcionRutina.setText(asesorias.getRutinas_descripcion());
-                            txtDescripcionAlimentos.setText(asesorias.getAlimentos_descripcion());
+
+
                             videoUrl=asesorias.getVideo_explicativo();
                             Picasso.get().load(asesorias.getImagen_portada()).into(imgAsesoria);
                             Picasso.get().load(asesorias.getRutinas_imagen()).into(imgEjercicios);
                             Picasso.get().load(asesorias.getAlimentos_imagen()).into(imgAlimentos);
                             Picasso.get().load(asesorias.getImagen_portada()).into(videoView);
 
+
+
+                            if (asesorias.getDescripcion_asesoria().equals("nil")){
+
+                                txtDescripcion.setText("Sin descripción");
+
+                            }
+                            else {
+                                txtDescripcion.setText(asesorias.getDescripcion_asesoria());
+
+                            }
+
+                            if (asesorias.getRutinas_descripcion().equals("nil")){
+                                txtDescripcionRutina.setText("Sin descripción");
+
+                            }
+                            else {
+                                txtDescripcionRutina.setText(asesorias.getRutinas_descripcion());
+
+                            }
+
+                            if (asesorias.getAlimentos_descripcion().equals("nil")){
+                                txtDescripcionAlimentos.setText("Sin descripción");
+
+                            }
+                            else {
+                                txtDescripcionAlimentos.setText(asesorias.getAlimentos_descripcion());
+
+                            }
 
                         }
 

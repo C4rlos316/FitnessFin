@@ -123,10 +123,31 @@ public class SolicitudAsesoria extends AppCompatActivity {
 
                                 if (usuarios.getId_usuario().equals(id)) {
 
-                                    txtPeso.setText(usuarios.getPeso_actual());
-                                    txtEstatura.setText(usuarios.getEstatura());
                                     txtNombre.setText(usuarios.getNombre_usuario());
-                                    txtObjetivo.setText(usuarios.getObjetivo());
+
+                                    if (usuarios.getEstatura().equals("nil")) {
+                                        txtEstatura.setText("Sin Registro");
+
+                                    } else {
+                                        txtEstatura.setText(usuarios.getEstatura());
+
+                                    }
+
+                                    if (usuarios.getObjetivo().equals("nil")) {
+                                        txtObjetivo.setText("Sin Registro");
+
+                                    } else {
+                                        txtObjetivo.setText(usuarios.getObjetivo());
+
+                                    }
+
+                                    if (usuarios.getPeso_actual().equals("nil")) {
+                                        txtPeso.setText("Sin Registro");
+
+                                    } else {
+                                        txtPeso.setText(usuarios.getPeso_actual());
+
+                                    }
 
                                     if (usuarios.getFoto_usuario().equals("nil")) {
                                         try {

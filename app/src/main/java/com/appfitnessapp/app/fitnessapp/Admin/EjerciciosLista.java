@@ -144,6 +144,7 @@ public class EjerciciosLista extends AppCompatActivity {
                     dbProvider.subirEjerciciosPlan(nombre,rondas,repeticiones,video,key,id_ejercicio);
                     dbProvider.subirImagenesEjercicios(img1,img2,img3,key,id_ejercicio);
                     Toast.makeText(EjerciciosLista.this, "Se subio la información", Toast.LENGTH_SHORT).show();
+                    finish();
 
 
                 }
