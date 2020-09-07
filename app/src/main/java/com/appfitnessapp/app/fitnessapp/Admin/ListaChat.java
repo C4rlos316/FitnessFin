@@ -146,10 +146,9 @@ public class ListaChat extends AppCompatActivity {
 
                         if(inscritos.getId_usuario()!=null) {
                             if (inscritos.getAdmin().equals(id)){
-                                if (inscritos.getId_pendiente().equals(true)) {
                                     Log.e(TAG, "INSCRITOS true: " + inscritos);
                                     bajarUsuarios(inscritos.getId_usuario());
-                                }
+
 
                         }
                         }

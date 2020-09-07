@@ -259,10 +259,9 @@ public class ChatFragmentUsuario extends AppCompatActivity implements ChatContra
 
                         if(inscritos.getId_usuario()!=null) {
                             if (inscritos.getId_usuario().equals(id_usuario)){
-                                if (inscritos.getId_pendiente().equals(true)) {
                                     Log.e(TAG, "INSCRITOS true: " + inscritos);
                                     bajarUsuarios(inscritos.getAdmin());
-                                }
+
 
                             }
                         }

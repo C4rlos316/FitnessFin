@@ -3,13 +3,16 @@ package com.appfitnessapp.app.fitnessapp.Admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanEntrenamiento;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
@@ -42,11 +45,22 @@ public class AdminWorkouts extends AppCompatActivity {
 
     String id;
 
+    TextView txtEditar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_09_workouts);
+
+
+        Toolbar toolbarback = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbarback);
+        getSupportActionBar().setTitle("");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+
         dbProvider = new DBProvider();
         bajarInfo = new BajarInfo();
         bajarPlanEjercicios();
@@ -67,6 +81,23 @@ public class AdminWorkouts extends AppCompatActivity {
         txtIntensidad=findViewById(R.id.txtIntensidad);
         txtEjericios=findViewById(R.id.txtEjericicios);
 
+        txtEditar=findViewById(R.id.txtEditar);
+
+
+
+        txtEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(AdminWorkouts.this, AdminDiaTabla.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id",id);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
 
 
 
@@ -182,5 +213,21 @@ public class AdminWorkouts extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
 }

@@ -63,7 +63,9 @@ public class UsuarioPlan  extends AppCompatActivity {
 
         Toolbar toolbarback=findViewById(R.id.toolbar);
         setSupportActionBar(toolbarback);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("Plan alimenticio");
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         dbProvider = new DBProvider();

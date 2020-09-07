@@ -277,11 +277,7 @@ public class AgregarRecetas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(AgregarRecetas.this, AgregarIngredientes.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("key",keyPlan);
-                intent.putExtras(bundle);
-                startActivity(intent);
+
             }
         });
 
@@ -327,6 +323,12 @@ public class AgregarRecetas extends AppCompatActivity {
                                     nombre_alimento, tipo_alimento, precioAlto, precioBajo);
                             progressDialog.dismiss();
                             Toast.makeText(AgregarRecetas.this, "Se subio correctamente la información. ", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(AgregarRecetas.this, AgregarIngredientes.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("key",keyPlan);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
                         }
                     });
 

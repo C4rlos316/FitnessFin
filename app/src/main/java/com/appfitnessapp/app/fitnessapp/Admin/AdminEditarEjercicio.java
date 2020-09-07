@@ -104,8 +104,6 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
 
 
 
-        btnRecetas = findViewById(R.id.btnRecetas);
-
         edtDescripcion = findViewById(R.id.edtDescripcion);
 
         edtTiempo = findViewById(R.id.edtTiempo);
@@ -207,25 +205,6 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
             }
         });
 
-
-
-        btnRecetas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                /*
-                Intent intent = new Intent(AdminEditarEjercicio.this, AgregarRecetas.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("id", id);
-                intent.putExtras(bundle);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-
-*/
-
-            }
-        });
 
 
 

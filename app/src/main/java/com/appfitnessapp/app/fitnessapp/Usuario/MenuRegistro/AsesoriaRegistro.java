@@ -75,7 +75,13 @@ public class AsesoriaRegistro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.usuario_04_asesoria);
+        setContentView(R.layout.usuario04_asesorianueva);
+
+        Toolbar toolbarback=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbarback);
+        getSupportActionBar().setTitle("Asesoría personalizada");
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
@@ -130,11 +136,7 @@ public class AsesoriaRegistro extends AppCompatActivity {
 
 
 
-        Toolbar toolbarback=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbarback);
-        getSupportActionBar().setTitle("Asesoría personalizada");
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
         imgAsesoria=findViewById(R.id.imgAsesoria);
         imgEjercicios=findViewById(R.id.imgRutina);
