@@ -7,15 +7,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
-import com.appfitnessapp.app.fitnessapp.Login.SplashPantalla;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.appfitnessapp.app.fitnessapp.Usuario.DatosUsuario;
-import com.appfitnessapp.app.fitnessapp.Usuario.Formulario;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
-import com.google.firebase.auth.FirebaseAuth;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -154,11 +148,12 @@ public class PaymentDetails extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    Intent intent =new Intent(PaymentDetails.this, Formulario.class);
+                    Intent intent =new Intent(PaymentDetails.this, DatosUsuario.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     Bundle bundle = new Bundle();
                     bundle.putString("id",idUsuario);
+                    bundle.putString("admin",admin);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
@@ -167,9 +162,7 @@ public class PaymentDetails extends AppCompatActivity {
             }.start();
 
 
-            //txtId.setText(response.getString("id"));
-            txtStatus.setText(response.getString("state"));
-            //txtAmount .setText("$"+ paymentAmount);
+            txtStatus.setText(response.getString(""));
 
         } catch (JSONException e) {
             e.printStackTrace();

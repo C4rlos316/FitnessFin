@@ -31,8 +31,6 @@ public class AlarmaDesayuno extends AppCompatActivity implements TimePickerDialo
 
     private TextView textoNuevo;
     private String cena;
-    public static final String LAST_TEXT2 = "";
-
     private Context mContext;
 
 

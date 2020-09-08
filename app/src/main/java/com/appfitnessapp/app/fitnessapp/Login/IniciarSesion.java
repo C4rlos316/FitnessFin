@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,11 +21,8 @@ import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.DatosUsuario;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.Home;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_UPago.Menu_UsuarioPago;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_Usuario;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuPago.Menu_UsuarioPago;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuSinPago.Menu_Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -42,15 +38,11 @@ public class IniciarSesion extends AppCompatActivity {
 
     private static final String TAG = "Ingresar:";
 
-    String mensaje;
-    String id, email, name;
     Boolean yaCreado;
-
     private ProgressDialog progressDialog;
     private static FirebaseAuth mAuth;
     static DBProvider dbProvider;
 
-    String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
     TextInputEditText edtCorreo,edtContrasena;
     LinearLayout btnIniciarSesion,btnRegistrar;
@@ -129,8 +121,6 @@ public class IniciarSesion extends AppCompatActivity {
 
     public void login(String email, String pass) {
 
-        //Log.e(TAG,"LOGIN: "+email);
-        //mensaje = "////////////////////////////////////////prueba/////////////////////////////////////////////";
         mAuth = FirebaseAuth.getInstance();
 
         mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -154,7 +144,7 @@ public class IniciarSesion extends AppCompatActivity {
         Log.e(TAG,"Usuarios 2: ");
         dbProvider = new DBProvider();
 
-        dbProvider.usersRef().addValueEventListener(new ValueEventListener() {
+        dbProvider.usersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG,"Usuarios 4: ");
@@ -209,13 +199,6 @@ public class IniciarSesion extends AppCompatActivity {
             }
         });
 
-        /*
-        if (!yaCreado){
-            dbProvider.createUser(user.getEmail(),user.getUid(),name,"nil","nil","nil",refreshedToken,Contants.USUARIO,"nil",
-                    "nil","nil");
-        }
-
-        */
     }
 
     @Override

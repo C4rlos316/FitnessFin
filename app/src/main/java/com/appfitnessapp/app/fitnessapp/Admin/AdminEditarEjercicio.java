@@ -3,32 +3,23 @@ package com.appfitnessapp.app.fitnessapp.Admin;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterDiaTabla;
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterEditarEjercicios;
 import com.appfitnessapp.app.fitnessapp.Arrays.Ejercicios;
-import com.appfitnessapp.app.fitnessapp.Arrays.PlanEntrenamiento;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -38,13 +29,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AdminEditarEjercicio  extends AppCompatActivity {
 
-    TextView btnRecetas, btnGuardar;
+    TextView btnGuardar;
     EditText edtDescripcion, edtTiempo, edtNumEjercicios;
 
 
@@ -185,23 +174,6 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
                 });
                 dialogo1.show();
 
-                /*
-                Intent intent = new Intent(AdminEditarEjercicio.this, AdminEditarValoresEjercicios.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("id",id);
-                bundle.putString("id_plan",id_plan);
-                bundle.putString("id_ejercicio",id_ejercicio);
-                bundle.putString("nombre",ejercicios.get(recyclerView.getChildAdapterPosition(v)).getNombre_ejercicio());
-                bundle.putString("repeteciones",ejercicios.get(recyclerView.getChildAdapterPosition(v)).getRepeticiones());
-                bundle.putString("rondas",ejercicios.get(recyclerView.getChildAdapterPosition(v)).getRondas());
-                bundle.putString("video",ejercicios.get(recyclerView.getChildAdapterPosition(v)).getVideo_ejercicio());
-
-                intent.putExtras(bundle);
-                startActivity(intent);
-
-
-*/
-
             }
         });
 
@@ -291,7 +263,7 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
 
         Log.e(TAG, "Ejercicio: " + id_plan);
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanEntrenamiento().child(id_plan).child(Contants.EJERCICIOS).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanEntrenamiento().child(id_plan).child(Contants.EJERCICIOS).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ejercicios.clear();

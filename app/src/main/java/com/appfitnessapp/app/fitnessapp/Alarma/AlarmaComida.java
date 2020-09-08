@@ -3,16 +3,13 @@ package com.appfitnessapp.app.fitnessapp.Alarma;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,8 +30,6 @@ public class AlarmaComida extends AppCompatActivity implements TimePickerDialog.
 
         private TextView textoNuevo;
         private String cena;
-        public static final String LAST_TEXT2 = "";
-
         private Context mContext;
 
         @Override

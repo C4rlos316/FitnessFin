@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
-    tools:context=".menu_nuevo.FragmentsU.Menu_ConocenosU">
+    tools:context=".Usuario.MenuSinPago.Fragments.Menu_ConocenosU">
 
 
     <LinearLayout

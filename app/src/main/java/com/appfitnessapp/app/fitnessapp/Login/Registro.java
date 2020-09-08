@@ -14,22 +14,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.Home;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_Usuario;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuSinPago.Menu_Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Objects;
@@ -89,7 +83,7 @@ public class Registro extends AppCompatActivity {
                     progressDialog.setMessage("Creando cuenta...");
                     progressDialog.show();
                     progressDialog.setCancelable(false);
-                    register(correo,nombre,contrasena,telefono,refreshedToken,Contants.USUARIO);
+                    register(correo,nombre,contrasena,telefono,Contants.USUARIO);
                 }else{
                     Toast.makeText(Registro.this, "Verifica que tengas todos los datos.", Toast.LENGTH_SHORT).show();
                 }
@@ -112,7 +106,7 @@ public class Registro extends AppCompatActivity {
 
     public void register( final String email,
                           final String name,final String pass,  final String phone,
-                          final String token,final String type) {
+                          final String type) {
 
         Log.e(TAG, "REGISTRO: " + email);
         mAuth = FirebaseAuth.getInstance();
@@ -130,7 +124,7 @@ public class Registro extends AppCompatActivity {
                 }
                 if (task.isSuccessful()) {
                     FirebaseUser user = task.getResult().getUser();
-                    dbProvider.createUser(email,user.getUid(),name,pass,phone,"nil",token,type,"nil","nil","nil",false);
+                    dbProvider.createUser(email,user.getUid(),name,pass,phone,"nil","nil",type,"nil","nil","nil",false);
                     Intent intent = new Intent(Registro.this, Menu_Usuario.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

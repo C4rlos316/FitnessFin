@@ -8,8 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,9 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterRecetas;
-import com.appfitnessapp.app.fitnessapp.Arrays.Ingredientes;
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanAlimenticio;
-import com.appfitnessapp.app.fitnessapp.Arrays.Preparacion;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
@@ -31,13 +28,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+
 
 public class UsuarioPlan  extends AppCompatActivity {
 
@@ -128,31 +120,6 @@ public class UsuarioPlan  extends AppCompatActivity {
         recyclerView3.setAdapter(adapter3);
 
 
-        /*
-        txtNada.setVisibility(View.GONE);
-        imagsplash.setVisibility(View.GONE);
-        recyclerView.setVisibility(View.VISIBLE);
-        txtDesayuno.setVisibility(View.VISIBLE);
-        txtAlmuerzo.setVisibility(View.VISIBLE);
-        recyclerView2.setVisibility(View.VISIBLE);
-        txtCena.setVisibility(View.VISIBLE);
-        recyclerView3.setVisibility(View.VISIBLE);
-
-
-
-
-          txtNada.setVisibility(View.VISIBLE);
-                                    imagsplash.setVisibility(View.VISIBLE);
-                                    recyclerView.setVisibility(View.GONE);
-                                    recyclerView2.setVisibility(View.GONE);
-                                    recyclerView3.setVisibility(View.GONE);
-                                    txtAlmuerzo.setVisibility(View.GONE);
-                                    txtCena.setVisibility(View.GONE);
-                                    txtDesayuno.setVisibility(View.GONE);
-*/
-
-
-
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,6 +133,8 @@ public class UsuarioPlan  extends AppCompatActivity {
                 bundle.putString("calorias",recetas.get(recyclerView.getChildAdapterPosition(v)).getKilocalorias());
                 bundle.putString("minutos",recetas.get(recyclerView.getChildAdapterPosition(v)).getMin_alimento());
                 bundle.putString("porciones",recetas.get(recyclerView.getChildAdapterPosition(v)).getPorciones());
+                bundle.putString("preciomax",recetas.get(recyclerView.getChildAdapterPosition(v)).getPrecio_mas_alto());
+                bundle.putString("preciomin",recetas.get(recyclerView.getChildAdapterPosition(v)).getPrecio_mas_bajo());
                 bundle.putString("id_usuario",id);
 
                 intent.putExtras(bundle);
@@ -189,6 +158,8 @@ public class UsuarioPlan  extends AppCompatActivity {
                 bundle.putString("calorias",recetas2.get(recyclerView2.getChildAdapterPosition(v)).getKilocalorias());
                 bundle.putString("minutos",recetas2.get(recyclerView2.getChildAdapterPosition(v)).getMin_alimento());
                 bundle.putString("porciones",recetas2.get(recyclerView2.getChildAdapterPosition(v)).getPorciones());
+                bundle.putString("preciomax",recetas2.get(recyclerView2.getChildAdapterPosition(v)).getPrecio_mas_alto());
+                bundle.putString("preciomin",recetas2.get(recyclerView2.getChildAdapterPosition(v)).getPrecio_mas_bajo());
                 bundle.putString("id_usuario",id);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -208,6 +179,8 @@ public class UsuarioPlan  extends AppCompatActivity {
                 bundle.putString("calorias",recetas3.get(recyclerView3.getChildAdapterPosition(v)).getKilocalorias());
                 bundle.putString("minutos",recetas3.get(recyclerView3.getChildAdapterPosition(v)).getMin_alimento());
                 bundle.putString("porciones",recetas3.get(recyclerView3.getChildAdapterPosition(v)).getPorciones());
+                bundle.putString("preciomax",recetas3.get(recyclerView3.getChildAdapterPosition(v)).getPrecio_mas_alto());
+                bundle.putString("preciomin",recetas3.get(recyclerView3.getChildAdapterPosition(v)).getPrecio_mas_bajo());
                 bundle.putString("id_usuario",id);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -294,7 +267,7 @@ public class UsuarioPlan  extends AppCompatActivity {
     public void bajarRecetas(){
 
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanAlimenticio().addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanAlimenticio().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 recetas.clear();
@@ -309,6 +282,7 @@ public class UsuarioPlan  extends AppCompatActivity {
                         if (plan.getId_plan_alimenticio() != null){
                             if (plan.getId_usuario().equals(id)) {
                                 if (plan.getTipo_alimento().equals(Contants.DESAYUNO)) {
+
                                     recetas.add(plan);
                                     adapter.notifyDataSetChanged();
                                 }
@@ -345,50 +319,6 @@ public class UsuarioPlan  extends AppCompatActivity {
     }
 
 
-    private void updateUi(ArrayList<PlanAlimenticio> books,ArrayList<PlanAlimenticio> books1,ArrayList<PlanAlimenticio> books2) {
-
-        if(books.size() > 0 || books1.size()>0 || books2.size()>0) {
-            txtNada.setVisibility(View.GONE);
-            txtAlmuerzo.setVisibility(View.VISIBLE);
-            txtCena.setVisibility(View.VISIBLE);
-            txtDesayuno.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.VISIBLE);
-            recyclerView2.setVisibility(View.VISIBLE);
-            recyclerView3.setVisibility(View.VISIBLE);
-
-        } else {
-            txtNada.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
-            recyclerView2.setVisibility(View.GONE);
-            recyclerView3.setVisibility(View.GONE);
-            txtAlmuerzo.setVisibility(View.GONE);
-            txtCena.setVisibility(View.GONE);
-            txtDesayuno.setVisibility(View.GONE);
-        }
-    }
-
-
-
-
-    private String getNextDate(String inputDate){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = new Date();
-        inputDate = dateFormat.format(date);
-        try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-
-            c.add(Calendar.DATE, +1);
-            inputDate = dateFormat.format(c.getTime());
-            Log.d("asd", "selected date : "+inputDate);
-
-            System.out.println(date);
-        } catch (Exception e) {
-            e.printStackTrace();
-            inputDate ="";
-        }
-        return inputDate;
-    }
 
 
     @Override

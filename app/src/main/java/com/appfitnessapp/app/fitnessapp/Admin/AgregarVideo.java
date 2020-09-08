@@ -14,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,10 +145,7 @@ public class AgregarVideo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i  = new Intent(AgregarVideo.this,AdminAgregarFeed.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
+
             }
         });
 
@@ -180,7 +176,11 @@ public class AgregarVideo extends AppCompatActivity {
                                 uploadImagen(descripcion,imgPrincipal,timestamp,uri.toString());
                                 progressDialog.dismiss();
 
-                                Toast.makeText(AgregarVideo.this, "Se subió correctamente la información", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AgregarVideo.this, "Se subió correctamente  tu video.", Toast.LENGTH_SHORT).show();
+                                Intent i  = new Intent(AgregarVideo.this,AdminAgregarFeed.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                                finish();
                             }
                         });
 
@@ -209,15 +209,6 @@ public class AgregarVideo extends AppCompatActivity {
     private void uploadImagen(final String descripcion, final String imgPrincipal, final String timestamp,
                               final String video) {
 
-
-
-        /*
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Subiendo...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
-        */
 
         final String fileName =System.currentTimeMillis()+"";
         final StorageReference storageReference1 =  mStorage.child(Contants.TABLA_FEED).child(fileName);

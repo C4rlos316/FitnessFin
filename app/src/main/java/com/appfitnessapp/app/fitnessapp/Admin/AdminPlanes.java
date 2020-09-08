@@ -14,14 +14,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterAdmin;
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterAdminListaPlanes;
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterPlanes;
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterPreguntas;
 import com.appfitnessapp.app.fitnessapp.Arrays.Planes;
-import com.appfitnessapp.app.fitnessapp.Arrays.Preguntas;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -116,7 +110,7 @@ public class AdminPlanes extends AppCompatActivity {
 
     public void bajarPlanes(){
         dbProvider = new DBProvider();
-        dbProvider.planes().addValueEventListener(new ValueEventListener() {
+        dbProvider.planes().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 plan.clear();

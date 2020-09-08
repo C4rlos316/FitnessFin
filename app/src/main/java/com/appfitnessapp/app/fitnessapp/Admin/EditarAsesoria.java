@@ -12,10 +12,8 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +38,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 
 public class EditarAsesoria extends AppCompatActivity {
 
@@ -202,7 +199,7 @@ public class EditarAsesoria extends AppCompatActivity {
         progressDialog.show();
 
 
-        dbProvider.asesoriaInfo().addValueEventListener(new ValueEventListener() {
+        dbProvider.asesoriaInfo().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");

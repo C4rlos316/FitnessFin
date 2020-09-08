@@ -28,7 +28,6 @@ import android.widget.Toast;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.subirArchivos;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -123,10 +122,7 @@ public class AgregarImagen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i  = new Intent(AgregarImagen.this,AdminAgregarFeed.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
+
             }
         });
 
@@ -168,6 +164,10 @@ public class AgregarImagen extends AppCompatActivity {
                                     descripcion,id);
                             progressDialog.dismiss();
                             Toast.makeText(AgregarImagen.this, "Se ha subido la imagen correctamente.", Toast.LENGTH_SHORT).show();
+                            Intent i  = new Intent(AgregarImagen.this,AdminAgregarFeed.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            finish();
 
 
                         }

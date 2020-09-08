@@ -191,10 +191,7 @@ public class AgregarPdf extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i  = new Intent(AgregarPdf.this,AdminAgregarFeed.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
+
             }
         });
     }
@@ -225,7 +222,11 @@ public class AgregarPdf extends AppCompatActivity {
                                 uploadImagen(descripcion,imgPrincipal,timestamp,uri.toString(),costo,gratis);
                                 progressDialog.dismiss();
 
-                                Toast.makeText(AgregarPdf.this, "Se subió correctamente la información", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AgregarPdf.this, "Se subió correctamente el PDF correctamente.", Toast.LENGTH_SHORT).show();
+                                Intent i  = new Intent(AgregarPdf.this,AdminAgregarFeed.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                                finish();
                             }
                         });
 
@@ -254,15 +255,6 @@ public class AgregarPdf extends AppCompatActivity {
     private void uploadImagen(final String descripcion, final String imgPrincipal, final String timestamp,
                               final String pdf,final String costo,final Boolean gratis) {
 
-
-
-        /*
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Subiendo...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
-        */
 
         final String fileName =System.currentTimeMillis()+"";
         final StorageReference storageReference1 =  mStorage.child(Contants.TABLA_FEED).child(fileName);

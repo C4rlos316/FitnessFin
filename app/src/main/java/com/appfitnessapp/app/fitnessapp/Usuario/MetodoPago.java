@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.AsesoriaRegistro;
 import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.Config;
 import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.PaymentDetails;
 import com.google.firebase.auth.FirebaseAuth;
@@ -100,7 +98,6 @@ public class MetodoPago extends AppCompatActivity {
 
         String simbolo="$";
 
-       // txtTotal.setText("$ "+pago);
         txtResumen.setText("$ "+pago);
         txtPlan.setText(meses+"meses");
 

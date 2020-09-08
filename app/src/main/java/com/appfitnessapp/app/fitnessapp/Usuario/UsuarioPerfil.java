@@ -134,8 +134,6 @@ public class UsuarioPerfil  extends AppCompatActivity {
            Toolbar toolbarback=findViewById(R.id.toolbarU);
            setSupportActionBar(toolbarback);
            getSupportActionBar().setTitle("");
-          // ActionBar actionBar=getSupportActionBar();
-           //actionBar.setDisplayHomeAsUpEnabled(true);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
@@ -431,7 +429,7 @@ public class UsuarioPerfil  extends AppCompatActivity {
 
         progressDialog.setMessage("Cargando Información...");
         progressDialog.show();
-        dbProvider.usersRef().addValueEventListener(new ValueEventListener() {
+        dbProvider.usersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");
@@ -512,7 +510,7 @@ public class UsuarioPerfil  extends AppCompatActivity {
 
     public void bajarEstadisticasAlimentos(){
         dbProvider = new DBProvider();
-        dbProvider.estadisticaAlimentos().addValueEventListener(new ValueEventListener() {
+        dbProvider.estadisticaAlimentos().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -609,7 +607,7 @@ public class UsuarioPerfil  extends AppCompatActivity {
     public void bajarEstadisticasEjercicios(){
         dbProvider = new DBProvider();
 
-        dbProvider.estadisticaEjercicios().addValueEventListener(new ValueEventListener() {
+        dbProvider.estadisticaEjercicios().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 BARENTRY = new ArrayList<>();
@@ -840,20 +838,6 @@ public class UsuarioPerfil  extends AppCompatActivity {
         return inputDate;
     }
 
-    public static class GetWeekOfMonthAndYear {
-
-        public static void main(String[] args) {
-
-            //Create calendar instance
-            Calendar calendar = Calendar.getInstance();
-
-            System.out.println("Current week of this month = " + calendar.get(Calendar.WEEK_OF_MONTH));
-
-
-            System.out.println("Current week of this year = " + calendar.get(Calendar.WEEK_OF_YEAR));
-
-        }
-    }
 
     @Override
     public void onBackPressed() {

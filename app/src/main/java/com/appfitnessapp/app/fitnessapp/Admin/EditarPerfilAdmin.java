@@ -30,8 +30,6 @@ import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.Login.SplashPantalla;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.EditarPerfil;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioPerfil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -50,7 +48,6 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -66,21 +63,13 @@ public class EditarPerfilAdmin extends AppCompatActivity {
     TextView btnCambiarFoto;
     LinearLayout btnAceptar;
 
-
-
     private StorageReference mStorage;
     private ProgressDialog progressDialog;
     private static FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener listener;
 
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
 
-    Boolean isFotoReady = false;
-    String selectDay;
-
-    public static final int REQUEST_CODE = 1234;
     private Uri imgUri;
 
     @Override
@@ -207,7 +196,7 @@ public class EditarPerfilAdmin extends AppCompatActivity {
         progressDialog.show();
         progressDialog.setCancelable(false);
 
-        dbProvider.usersRef().addValueEventListener(new ValueEventListener() {
+        dbProvider.usersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");

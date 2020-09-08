@@ -29,7 +29,6 @@ import java.util.Calendar;
 public class AlarmaCena extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     private TextView textoNuevo;
     private String cena;
-    public static final String LAST_TEXT2 = "";
 
     private Context mContext;
 

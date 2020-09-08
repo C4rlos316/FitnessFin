@@ -26,13 +26,9 @@ import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.DatosUsuario;
-import com.appfitnessapp.app.fitnessapp.Usuario.DetallePdf;
-import com.appfitnessapp.app.fitnessapp.Usuario.FeedSinRegistro.HomeSinRegistro;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.Home;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_UPago.Menu_UsuarioPago;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_Usuario;
+
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuPago.Menu_UsuarioPago;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuSinPago.Menu_Usuario;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,7 +38,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -170,7 +165,8 @@ public class SplashPantalla extends AppCompatActivity {
     public void bajarInscritos(final String id_usuario){
         dbProvider = new DBProvider();
 
-        dbProvider.tablaInscritos().addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaInscritos().addListenerForSingleValueEvent
+                (new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -269,7 +265,10 @@ public class SplashPantalla extends AppCompatActivity {
         Log.e(TAG,"Usuarios 2: ");
         dbProvider = new DBProvider();
 
-        dbProvider.usersRef().addValueEventListener(new ValueEventListener() {
+
+
+
+        dbProvider.usersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG,"Usuarios 4: ");

@@ -1,7 +1,6 @@
 package com.appfitnessapp.app.fitnessapp.Adapters;
 
-import android.app.ProgressDialog;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.appfitnessapp.app.fitnessapp.Arrays.Planes;
-import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
 import com.appfitnessapp.app.fitnessapp.Arrays.Valoraciones;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -106,15 +97,6 @@ public class AdapterComentarios extends RecyclerView.Adapter<AdapterComentarios.
                         .fit()
                         .noFade()
                         .into(holder.imgDespues);
-
-                /*
-                URL urlUsuario = new URL(plan.getFoto_usuario());
-                Picasso.get().load(String.valueOf(urlUsuario))
-                        .error(R.mipmap.ic_launcher)
-                        .fit()
-                        .noFade()
-                        .into(holder.imgPersona);
-*/
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

@@ -102,6 +102,16 @@ public class AdapterEbook extends RecyclerView.Adapter<AdapterEbook.FeedViewHold
             }
         }
 
+        if (feed.getTipo_feed().equals(Contants.EBOOKS) && feed.is_gratis) {
+            holder.txtPrecio.setText("GRATIS");
+            if (feed.getTipo_feed().equals(Contants.EBOOKS) && !feed.is_gratis) {
+                holder.txtPrecio.setText("");
+            }
+        }
+
+
+
+
 
         //---------------------------------------------------------------------------------------------------------
         String timest = feed.getTimestamp();

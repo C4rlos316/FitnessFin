@@ -5,18 +5,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.appfitnessapp.app.fitnessapp.R;
 
 public class AdminAgregarFeed extends AppCompatActivity {
 
     LinearLayout btnVideo,btnImagen,btnPdf,btnRecetarios,btnEbooks,btnPlanes;
 
-    LinearLayout btnAsesoria,btnFormulario,btnChat,btnCambiarAsesoria;
+    LinearLayout btnAsesoria,btnFormulario,btnChat,btnCambiarAsesoria,btnRutinas;
 
 
     @Override
@@ -36,6 +33,7 @@ public class AdminAgregarFeed extends AppCompatActivity {
 
         btnRecetarios=findViewById(R.id.btnRecetarios);
         btnEbooks=findViewById(R.id.btnEbooks);
+        btnRutinas=findViewById(R.id.btnRutinas);
 
         btnFormulario=findViewById(R.id.btnFormulario);
         btnAsesoria=findViewById(R.id.btnAsesoria);
@@ -108,6 +106,18 @@ public class AdminAgregarFeed extends AppCompatActivity {
 
             }
         });
+
+        btnRutinas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(AdminAgregarFeed.this, AgregarRutinas.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         btnCambiarAsesoria.setOnClickListener(new View.OnClickListener() {
             @Override

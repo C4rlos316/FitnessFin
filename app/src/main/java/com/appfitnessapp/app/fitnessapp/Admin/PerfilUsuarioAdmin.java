@@ -4,17 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.appfitnessapp.app.fitnessapp.Arrays.EstadisticaAlimentos;
 import com.appfitnessapp.app.fitnessapp.Arrays.EstadisticaEjercicio;
 import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
@@ -55,7 +50,7 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
     TextView txtNombre,txtPeso,txtAltura,txtEmail;
     LinearLayout btnMensaje,btnPlan;
 
-    String id,nombre,peso,estatura,correo,imagen;
+    String id;
 
 
 
@@ -87,7 +82,6 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
     int index_jueves = 0;
     int index_viernes = 0;
     int index_sabado = 0;
-    int index_ejercicio=0;
 
 
 
@@ -180,13 +174,9 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
         chart.setRenderer(barChartRender);
         chartHorizontal.setRenderer(barChartRenderH);
 
-
-
         //normal
         BarEntryLabels = new ArrayList<String>();
         AddValuesToBarEntryLabels();
-
-
 
 //_____________________________________________________________________________________________
 
@@ -290,18 +280,13 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
 
 
 
-///////////////////////////////////////////////////////////////////
-
-
-
-
 
 
     public void bajarUsuarios(){
         Log.e(TAG,"Usuarios 2: ");
         dbProvider = new DBProvider();
 
-        dbProvider.usersRef().addValueEventListener(new ValueEventListener() {
+        dbProvider.usersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG,"Usuarios 4: ");
@@ -378,7 +363,7 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
 
     public void bajarEstadisticasAlimentos(){
         dbProvider = new DBProvider();
-        dbProvider.estadisticaAlimentos().addValueEventListener(new ValueEventListener() {
+        dbProvider.estadisticaAlimentos().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -407,7 +392,6 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
                             int mesBase = c.get(Calendar.MONTH);
 
                             if (estadisticaAlimentos.getId_usuario().equals(id)) {
-                                // Toast.makeText(UsuarioPerfil.this, "hoy"+semanaActual+"base"+diaBase, Toast.LENGTH_SHORT).show();
                                 if (semanaActual==diaBase&&mesActual==mesBase){
                                     if (estadisticaAlimentos.getTipo_alimento().equals(Contants.ALMUERZO)){
                                         index_almuerzo +=1;
@@ -477,7 +461,7 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
     public void bajarEstadisticasEjercicios(){
         dbProvider = new DBProvider();
 
-        dbProvider.estadisticaEjercicios().addValueEventListener(new ValueEventListener() {
+        dbProvider.estadisticaEjercicios().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 BARENTRY = new ArrayList<>();
@@ -628,60 +612,5 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
     }
 ///////////////////////////////////////////////////////////////////
 
-
-    private String getPreviousDate(String inputDate){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = new Date();
-        inputDate = dateFormat.format(date);
-        try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-
-            c.add(Calendar.DATE, -1);
-            inputDate = dateFormat.format(c.getTime());
-            Log.d("asd", "selected date : "+inputDate);
-
-            System.out.println(date);
-        } catch (Exception e) {
-            e.printStackTrace();
-            inputDate ="";
-        }
-        return inputDate;
-    }
-
-    private String getNextDate(String inputDate){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = new Date();
-        inputDate = dateFormat.format(date);
-        try {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-
-            c.add(Calendar.DATE, +1);
-            inputDate = dateFormat.format(c.getTime());
-            Log.d("asd", "selected date : "+inputDate);
-
-            System.out.println(date);
-        } catch (Exception e) {
-            e.printStackTrace();
-            inputDate ="";
-        }
-        return inputDate;
-    }
-
-    public static class GetWeekOfMonthAndYear {
-
-        public static void main(String[] args) {
-
-            //Create calendar instance
-            Calendar calendar = Calendar.getInstance();
-
-            System.out.println("Current week of this month = " + calendar.get(Calendar.WEEK_OF_MONTH));
-
-
-            System.out.println("Current week of this year = " + calendar.get(Calendar.WEEK_OF_YEAR));
-
-        }
-    }
 
 }

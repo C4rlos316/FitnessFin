@@ -4,9 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,24 +28,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.appfitnessapp.app.fitnessapp.Arrays.Asesorias;
 import com.appfitnessapp.app.fitnessapp.Arrays.AsesoriasInfo;
-import com.appfitnessapp.app.fitnessapp.Arrays.Preguntas;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
-import com.appfitnessapp.app.fitnessapp.Login.SplashPantalla;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.FeedSinRegistro.Asesoria;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_UPago.Menu_UsuarioPago;
-import com.appfitnessapp.app.fitnessapp.subirArchivos;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuPago.Menu_UsuarioPago;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -91,9 +81,6 @@ public class Calificar extends AppCompatActivity {
     Date date = new Date();
 
     String fecha = dateFormat.format(date);
-    Calendar cal = Calendar.getInstance();
-
-    String semana ="";
 
     String id_asesoria;
 
@@ -112,11 +99,6 @@ public class Calificar extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         bajarAsesoria();
-
-
-        //cal.setTime(date);
-        //int week = cal.get(Calendar.WEEK_OF_MONTH);
-        //semana= String.valueOf(week);
 
 
         storage=FirebaseStorage.getInstance();
@@ -241,10 +223,6 @@ public class Calificar extends AppCompatActivity {
                     uploadFile2(key,txtExperiencia,fecha,id_asesoria,key,pdfUri2.toString(),pdfUri.toString(),
                             id,valor);
                     edtExperiencia.getText().clear();
-                    Intent intent=new Intent(Calificar.this, Menu_UsuarioPago.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
 
                 }
 
@@ -253,10 +231,13 @@ public class Calificar extends AppCompatActivity {
                             "nil",id,valor);
                     Toast.makeText(Calificar.this, "Se  ha calificado la asesoría.", Toast.LENGTH_SHORT).show();
                     edtExperiencia.getText().clear();
+
                     Intent intent=new Intent(Calificar.this, Menu_UsuarioPago.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
+
+
 
                 }
 
@@ -279,7 +260,6 @@ public class Calificar extends AppCompatActivity {
         progressDialog.setTitle("Subiendo...");
         progressDialog.setProgress(0);
         progressDialog.show();
-        progressDialog.setCancelable(false);
 
         final String fileName =System.currentTimeMillis()+id;
        final StorageReference storageReference1 =  mStorage.child(Contants.TABLA_VALORACIONES_ASESORIA).child(fileName);
@@ -306,7 +286,13 @@ public class Calificar extends AppCompatActivity {
 
                             uploadFile(descripcion,fecha,id_asesoria,id_valoracion,imgAntes,uri.toString(),nombre_usuario,valoracion);
                             progressDialog.dismiss();
-                            Toast.makeText(Calificar.this, "Se  ha calificado la asesoría.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Calificar.this, "Se  ha calificado  la asesoria.", Toast.LENGTH_SHORT).show();
+
+                            Intent intent=new Intent(Calificar.this, Menu_UsuarioPago.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+
 
                         }
                     });
@@ -337,13 +323,6 @@ public class Calificar extends AppCompatActivity {
     private void uploadFile( final String descripcion, final String fecha, final String id_asesoria, final String id_valoracion,final String imgAntes, final String imgDespues,
                              final String nombre_usuario, final String valoracion) {
 
-        /*
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Subiendo...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
-*/
         final String fileName =System.currentTimeMillis()+id;
         final StorageReference storageReference1 =  mStorage.child(Contants.TABLA_VALORACIONES_ASESORIA).child(fileName);
 
@@ -366,28 +345,9 @@ public class Calificar extends AppCompatActivity {
 
                             dbProvider.subirValoraciones(descripcion,fecha,id_asesoria,id_valoracion,uri.toString(),imgDespues,nombre_usuario,valoracion);
 
-                            //dbProvider.updateImgAntes(uri.toString(),id_);
                         }
                     });
 
-                    /*
-                    String url = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    DatabaseReference reference=database.getReference();
-                    reference.child(fileName).setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-
-                                Toast.makeText(Calificar.this, "Subio bien", Toast.LENGTH_SHORT).show();
-                                // progressDialog.dismiss();
-
-                            }
-                            else {
-                                Toast.makeText(Calificar.this, "No subio bien", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-*/
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -448,7 +408,7 @@ public class Calificar extends AppCompatActivity {
     public void bajarAsesoria(){
         dbProvider = new DBProvider();
 
-        dbProvider.asesoriaInfo().addValueEventListener(new ValueEventListener() {
+        dbProvider.asesoriaInfo().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");

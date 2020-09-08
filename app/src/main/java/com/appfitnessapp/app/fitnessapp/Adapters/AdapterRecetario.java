@@ -95,9 +95,9 @@ public class AdapterRecetario extends RecyclerView.Adapter<AdapterRecetario.Feed
         holder.txtTipoFeed.setText(feed.getTipo_feed());
 
 
-        if (feed.getTipo_feed().equals(Contants.EBOOKS) && feed.is_gratis) {
+        if (feed.getTipo_feed().equals(Contants.RECETARIOS) && feed.is_gratis) {
             holder.txtPrecio.setText("GRATIS");
-            if (feed.getTipo_feed().equals(Contants.EBOOKS) && !feed.is_gratis) {
+            if (feed.getTipo_feed().equals(Contants.RECETARIOS) && !feed.is_gratis) {
                 holder.txtPrecio.setText("");
             }
         }
@@ -239,7 +239,6 @@ public class AdapterRecetario extends RecyclerView.Adapter<AdapterRecetario.Feed
 
 
         if (!feed.getImagen_feed().equals("nil")){
-            // Log.e(TAG, "Imagen admin: "+ feed.getImagen_admin());
             Log.e(TAG, "Imagen feed: "+ feed.getImagen_feed());
 
 
@@ -250,16 +249,6 @@ public class AdapterRecetario extends RecyclerView.Adapter<AdapterRecetario.Feed
                         .resize(0,1000)
                         .centerCrop()
                         .into(holder.imgFeed);
-
-                /*
-                URL urlAdmin = new URL(feed.getImagen_feed());
-                Picasso.get().load(String.valueOf(urlAdmin))
-                        .error(R.mipmap.ic_launcher)
-                        .fit()
-                        .noFade()
-                        .into(holder.imgAdmin);
-
-                */
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -292,27 +281,5 @@ public class AdapterRecetario extends RecyclerView.Adapter<AdapterRecetario.Feed
         }
     }
 
-
-
-    private Long getCurrentTime(){
-
-        Long timeStamp =System.currentTimeMillis()/1000;
-        return timeStamp;
-
-    }
-
-    private String getDate(Long timeStamp) {
-
-        Calendar cal = Calendar.getInstance(Locale.getDefault());
-        cal.setTimeInMillis(timeStamp*1000);
-        String date = DateFormat.format("dd-MM-yyyy hh:mm",cal).toString();
-
-        return date;
-    }
-
-    private void saveTime(TextView fecha) {
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        rootRef.child(Contants.TABLA_FEED).child("timestamp").setValue(ServerValue.TIMESTAMP);
-    }
 
 }

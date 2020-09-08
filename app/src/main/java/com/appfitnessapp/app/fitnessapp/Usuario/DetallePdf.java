@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -17,9 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.MetodoPagoAsesoria;
-import com.appfitnessapp.app.fitnessapp.prueba;
-import com.appfitnessapp.app.fitnessapp.viewPdf;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -27,14 +24,12 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.BaseMultiplePermissionsListener;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class DetallePdf extends AppCompatActivity {
 
     LinearLayout btnComprar;
-    TextView txtPrecio, txtTitulo, txtDescripcion;
+    TextView txtPrecio, txtDescripcion;
     private static final int PDF_CODE = 1000;
 
 

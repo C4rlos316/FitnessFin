@@ -18,14 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterComprado;
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterPreguntas;
-import com.appfitnessapp.app.fitnessapp.Admin.AsesoriasPendientes;
-import com.appfitnessapp.app.fitnessapp.Admin.SolicitudAsesoria;
 import com.appfitnessapp.app.fitnessapp.Arrays.Comprado;
-import com.appfitnessapp.app.fitnessapp.Arrays.Preguntas;
-import com.appfitnessapp.app.fitnessapp.Arrays.Respuestas;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.ChatContractUsuario;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -125,7 +118,7 @@ public class ListaComprado extends AppCompatActivity {
         progressDialog.setMessage("Cargando Información...");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        dbProvider.tablaPdf().addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPdf().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 comprados.clear();

@@ -8,10 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +20,7 @@ import com.appfitnessapp.app.fitnessapp.Arrays.Preguntas;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -40,10 +39,14 @@ public class FormularioLista extends AppCompatActivity {
 
     TextView txtAgregar;
 
+    String id_admin;
+
     String nombre,nombre1,nombre2,nombre3,nombre4,nombre5,nombre6,nombre7,nombre8,nombre9;
     private ProgressDialog progressDialog;
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
+
+    private static FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,9 @@ public class FormularioLista extends AppCompatActivity {
         Toolbar toolbarback=findViewById(R.id.toolbar);
         setSupportActionBar(toolbarback);
         getSupportActionBar().setTitle("Formulario");
+
+        id_admin = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
 
         btnAsesoria=findViewById(R.id.btnAsesoria);
@@ -145,7 +151,7 @@ public class FormularioLista extends AppCompatActivity {
         progressDialog.setMessage("Cargando Información...");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        dbProvider.formulario().addValueEventListener(new ValueEventListener() {
+        dbProvider.formulario().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 preguntas.clear();
@@ -154,35 +160,41 @@ public class FormularioLista extends AppCompatActivity {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         //Log.e(TAG,"Usuarios: "+ snapshot);
                         Preguntas pregunta = snapshot.getValue(Preguntas.class);
-                        if (pregunta.getId_pregunta()!=null){
+                        if (pregunta.getId_pregunta()!=null) {
+
+                            if (pregunta.getAdmin().equals(id_admin)) {
+
                             preguntas.add(pregunta);
                             adapter.notifyDataSetChanged();
                             progressDialog.dismiss();
 
-                            nombre1=pregunta.nombre_pregunta;
-                            nombre2=pregunta.nombre_pregunta;
-                            nombre3=pregunta.nombre_pregunta;
-                            nombre4=pregunta.nombre_pregunta;
-                            nombre5=pregunta.nombre_pregunta;
-                            nombre6=pregunta.nombre_pregunta;
-                            nombre7=pregunta.nombre_pregunta;
-                            nombre8=pregunta.nombre_pregunta;
-                            nombre9=pregunta.nombre_pregunta;
-                            nombre=pregunta.nombre_pregunta;
-                           Log.e(TAG, "nombr:"+nombre);
-                            if (nombre1.equals(Contants.PREGUNTA_1)&&nombre2.equals(Contants.PREGUNTA_2)&&
-                                    nombre3.equals(Contants.PREGUNTA_3)&&nombre4.equals(Contants.PREGUNTA_4)&&
-                                    nombre5.equals(Contants.PREGUNTA_5)&&nombre6.equals(Contants.PREGUNTA_6)&&
-                                    nombre7.equals(Contants.PREGUNTA_7)&&nombre8.equals(Contants.PREGUNTA_8)&&
-                                    nombre9.equals(Contants.PREGUNTA_9)){
+                            nombre1 = pregunta.nombre_pregunta;
+                            nombre2 = pregunta.nombre_pregunta;
+                            nombre3 = pregunta.nombre_pregunta;
+                            nombre4 = pregunta.nombre_pregunta;
+                            nombre5 = pregunta.nombre_pregunta;
+                            nombre6 = pregunta.nombre_pregunta;
+                            nombre7 = pregunta.nombre_pregunta;
+                            nombre8 = pregunta.nombre_pregunta;
+                            nombre9 = pregunta.nombre_pregunta;
+                            nombre = pregunta.nombre_pregunta;
+                            Log.e(TAG, "nombr:" + nombre);
+                            if (nombre1.equals(Contants.PREGUNTA_1) && nombre2.equals(Contants.PREGUNTA_2) &&
+                                    nombre3.equals(Contants.PREGUNTA_3) && nombre4.equals(Contants.PREGUNTA_4) &&
+                                    nombre5.equals(Contants.PREGUNTA_5) && nombre6.equals(Contants.PREGUNTA_6) &&
+                                    nombre7.equals(Contants.PREGUNTA_7) && nombre8.equals(Contants.PREGUNTA_8) &&
+                                    nombre9.equals(Contants.PREGUNTA_9)) {
                                 txtAgregar.setVisibility(View.VISIBLE);
-                            }
-                            else if(nombre.equals(Contants.PREGUNTA_10)){
+                            } else if (nombre.equals(Contants.PREGUNTA_10)) {
                                 txtAgregar.setVisibility(View.INVISIBLE);
 
                             }
 
-                       }
+                        }
+
+                            progressDialog.dismiss();
+
+                        }
 
 
 

@@ -1,16 +1,9 @@
 package com.appfitnessapp.app.fitnessapp.Admin;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterAsesorias;
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterRespuestas;
 import com.appfitnessapp.app.fitnessapp.Arrays.Preguntas;
 import com.appfitnessapp.app.fitnessapp.Arrays.Respuestas;
-import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
+
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -91,7 +81,7 @@ public class FormularioUsuario extends AppCompatActivity {
         progressDialog.setMessage("Cargando Información...");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        dbProvider.respuestas().addValueEventListener(new ValueEventListener() {
+        dbProvider.respuestas().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 respuestas.clear();
@@ -128,7 +118,7 @@ public class FormularioUsuario extends AppCompatActivity {
         progressDialog.setMessage("Cargando Información...");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        dbProvider.formulario().addValueEventListener(new ValueEventListener() {
+        dbProvider.formulario().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");

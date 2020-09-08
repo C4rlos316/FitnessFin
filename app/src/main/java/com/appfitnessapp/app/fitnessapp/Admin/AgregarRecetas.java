@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterIngredientes;
-import com.appfitnessapp.app.fitnessapp.Arrays.AsesoriasInfo;
 import com.appfitnessapp.app.fitnessapp.Arrays.Ingredientes;
 import com.appfitnessapp.app.fitnessapp.Arrays.Inscritos;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
@@ -56,7 +55,7 @@ import java.util.Objects;
 public class AgregarRecetas extends AppCompatActivity {
 
     TextView btnWorkouts,btnGuardar,txtSiguiente;
-    EditText edtNombreComida,edtTiempo,edtCantidad, edtCalorias;
+    EditText edtNombreComida,edtTiempo,edtCantidad, edtCalorias,edtPrecioMin,edtPrecioMax;
     ImageButton btnIngrediente,btnPaso;
     RadioButton checkDesayuno,checkComida,checkCena;
     LinearLayout btnImagen;
@@ -115,6 +114,9 @@ public class AgregarRecetas extends AppCompatActivity {
         edtCantidad=findViewById(R.id.edtCantidad);
         edtCalorias=findViewById(R.id.edtCalorias);
 
+
+        edtPrecioMin=findViewById(R.id.edtPrecioMin);
+        edtPrecioMax=findViewById(R.id.edtPrecioMax);
 
         btnIngrediente=findViewById(R.id.btnAgregarIngrediente);
         btnPaso=findViewById(R.id.btnPaso);
@@ -201,16 +203,6 @@ public class AgregarRecetas extends AppCompatActivity {
             }
         });
 
-        btnIngrediente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                RecyclerView.LayoutManager lmmanager = new LinearLayoutManager(getApplicationContext()); recyclerviewIngrediente.setLayoutManager(lmmanager);
-                ingredientes.add(new Ingredientes("","","",""));
-                adapterIngredientes = new AdapterIngredientes(ingredientes);
-                recyclerviewIngrediente.setAdapter(adapterIngredientes);
-            }
-        });
 
 
         btnPaso.setOnClickListener(new View.OnClickListener() {
@@ -229,13 +221,15 @@ public class AgregarRecetas extends AppCompatActivity {
                 String cantidad = Objects.requireNonNull(edtCantidad.getText()).toString();
                 String calorias = Objects.requireNonNull(edtCalorias.getText()).toString();
                 String tiempo = Objects.requireNonNull(edtTiempo.getText()).toString();
+                String minimo=Objects.requireNonNull(edtPrecioMin.getText()).toString();
+                String max=Objects.requireNonNull(edtPrecioMax.getText()).toString();
 
                 keyPlan = key;
                 if (!nombre.isEmpty()&&!cantidad.isEmpty()&&!calorias.isEmpty()&&!tiempo.isEmpty()&&imgUri!=null){
                     if (checkDesayuno.isChecked()) {
                         uploadImage(key, id, imgUri.toString(),
                                 calorias + " Kcal", tiempo + " min", cantidad + " porciones",
-                                nombre, "desayuno", "200", "$100");
+                                nombre, "desayuno", max, minimo);
                         dbProvider.actualizarPendiente(id_inscrito,false);
                         btnGuardar.setVisibility(View.GONE);
                         txtSiguiente.setVisibility(View.VISIBLE);
@@ -244,7 +238,7 @@ public class AgregarRecetas extends AppCompatActivity {
                     } else if (checkComida.isChecked()) {
                         uploadImage(key, id, imgUri.toString(),
                                 calorias + " Kcal", tiempo + " min", cantidad + " porciones",
-                                nombre, "almuerzo", "$200", "100");
+                                nombre, "almuerzo", max, minimo);
                         dbProvider.actualizarPendiente(id_inscrito,false);
                         btnGuardar.setVisibility(View.GONE);
                         txtSiguiente.setVisibility(View.VISIBLE);
@@ -253,7 +247,7 @@ public class AgregarRecetas extends AppCompatActivity {
                     } else if (checkCena.isChecked()) {
                         uploadImage(key, id, imgUri.toString(),
                                 calorias + " Kcal", tiempo + " min", cantidad + " porciones",
-                                nombre, "cena", "200", "100");
+                                nombre, "cena", max, minimo);
                         dbProvider.actualizarPendiente(id_inscrito,false);
                         btnGuardar.setVisibility(View.GONE);
                         txtSiguiente.setVisibility(View.VISIBLE);
@@ -362,7 +356,7 @@ public class AgregarRecetas extends AppCompatActivity {
     public void bajarInscritos(){
         dbProvider = new DBProvider();
 
-        dbProvider.tablaInscritos().addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaInscritos().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");

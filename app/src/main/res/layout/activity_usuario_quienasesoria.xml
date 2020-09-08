@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    tools:context=".menu_nuevo.FragmentsU.QuienAsesoria">
+    tools:context=".Usuario.QuienAsesoria">
 
 
     <androidx.appcompat.widget.Toolbar

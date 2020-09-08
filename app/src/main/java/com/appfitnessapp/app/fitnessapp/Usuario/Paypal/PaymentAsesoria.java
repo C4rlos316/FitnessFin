@@ -11,10 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.Home;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_UPago.Menu_UsuarioPago;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_Usuario;
+import com.appfitnessapp.app.fitnessapp.Usuario.PantallaPDF;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -78,9 +75,13 @@ public class PaymentAsesoria extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    Intent intent =new Intent(PaymentAsesoria.this, Menu_UsuarioPago.class);
+                    Intent intent =new Intent(PaymentAsesoria.this, PantallaPDF.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.putExtra("ViewType","internet");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("pdf",url);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
 
@@ -88,9 +89,7 @@ public class PaymentAsesoria extends AppCompatActivity {
             }.start();
 
 
-            //txtId.setText(response.getString("id"));
-            txtStatus.setText(response.getString("state"));
-            //txtAmount .setText("$"+ paymentAmount);
+            txtStatus.setText(response.getString(""));
 
         } catch (JSONException e) {
             e.printStackTrace();

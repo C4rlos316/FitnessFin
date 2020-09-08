@@ -53,6 +53,8 @@ public class Contants {
 
     final public static String TABLA_RECETARIO = "tabla_recetario";
     final public static String TABLA_EBOOK= "tabla_ebook";
+    final public static String TABLA_RUTINAS= "tabla_rutinas";
+
 
 
 
@@ -162,7 +164,7 @@ public class Contants {
     final public static String INGREDIENTES = "ingredientes";
     final public static String NOMBRE_INGREDIENTE = "nombre_ingrediente";
     final public static String CANTIDAD = "cantidad";
-    final public static String DESCRIPCION_INGREDIENTE = "descripcion_ingredientes";
+    final public static String DESCRIPCION_INGREDIENTE = "descripcion_ingrediente";
     final public static String ID_INGREDIENTE = "id_ingrediente";
 
 

@@ -4,12 +4,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.CompoundButton;
@@ -41,8 +38,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -191,7 +186,7 @@ public class RutinaUsuario extends AppCompatActivity {
 
         Log.e(TAG, "Ejercicio: " + idEjercicio);
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanEntrenamiento().child(idEjercicio).child(Contants.EJERCICIOS).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanEntrenamiento().child(idEjercicio).child(Contants.EJERCICIOS).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ejercicios.clear();
@@ -202,11 +197,9 @@ public class RutinaUsuario extends AppCompatActivity {
                         final Ejercicios ejercicio = snapshot.getValue(Ejercicios.class);
 
                         if (ejercicio.getId_ejercicio()!=null){
-                            //txtNombreEjercicio.setText(ejercicio.getNombre_ejercicio());
                             videoUrl=ejercicio.getVideo_ejercicio();
                             ejercicios.add(ejercicio);
                             adapter.notifyDataSetChanged();
-                            // bajarImagenes(ejercicio.getId_ejercicio(),ejercicio.getNombre_ejercicio());
                             positionView = Objects.requireNonNull(recyclerView.getAdapter()).getItemCount();
 
 
@@ -266,19 +259,16 @@ public class RutinaUsuario extends AppCompatActivity {
     public void bajarImagenes(String id_ejercicio, final ImageView img1, final ImageView img2, final ImageView img3){
 
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanEntrenamiento().child(idEjercicio).child(Contants.EJERCICIOS).child(id_ejercicio).child(Contants.IMAGENES_EJERCICIO).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanEntrenamiento().child(idEjercicio).child(Contants.EJERCICIOS).child(id_ejercicio).child(Contants.IMAGENES_EJERCICIO).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Log.e(TAG, "Feed: " + dataSnapshot);
                         ImagenesEjercicios ejercicio = dataSnapshot.getValue(ImagenesEjercicios.class);
-                        //ejercicio.setNombre(titulo);
                         Picasso.get().load(ejercicio.getImagen_1()).fit().centerCrop().into(img1);
                         Picasso.get().load(ejercicio.getImagen_2()).fit().centerCrop().into(img2);
                         Picasso.get().load(ejercicio.getImagen_3()).fit().centerCrop().into(img3);
-                        //ejerciciosImg.add(ejercicio);
-                        //adapterImg.notifyDataSetChanged();
 
                     }
                 }

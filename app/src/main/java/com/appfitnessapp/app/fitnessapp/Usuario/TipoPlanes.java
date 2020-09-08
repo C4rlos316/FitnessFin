@@ -15,24 +15,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterPlanes;
-import com.appfitnessapp.app.fitnessapp.Arrays.Feed;
 import com.appfitnessapp.app.fitnessapp.Arrays.Planes;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
-import com.appfitnessapp.app.fitnessapp.Login.IniciarSesion;
-import com.appfitnessapp.app.fitnessapp.Login.Registro;
+
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.AsesoriaRegistro;
-import com.appfitnessapp.app.fitnessapp.Usuario.MenuRegistro.Home;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+
 
 public class TipoPlanes extends AppCompatActivity {
 
@@ -76,7 +69,6 @@ public class TipoPlanes extends AppCompatActivity {
         int spacing_top=0;
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing_left, spacing_top));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        //  recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         recyclerView.setLayoutManager(layoutManager);
         plan = new ArrayList<>();
         adapter=new AdapterPlanes(plan);
@@ -110,7 +102,7 @@ public class TipoPlanes extends AppCompatActivity {
 
     public void bajarPlanes(){
         dbProvider = new DBProvider();
-        dbProvider.planes().addValueEventListener(new ValueEventListener() {
+        dbProvider.planes().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 plan.clear();
@@ -127,9 +119,6 @@ public class TipoPlanes extends AppCompatActivity {
                             }
 
                         }
-                       // costo =String.valueOf(planes.getCosto_plan());
-
-
 
 
                     }

@@ -228,7 +228,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="@string/total_inversion"
+        android:text=""
         android:textAllCaps="false"
         android:textColor="@android:color/black"
         android:textSize="12sp" />

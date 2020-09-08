@@ -1,22 +1,14 @@
 package com.appfitnessapp.app.fitnessapp.Usuario;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -37,16 +29,11 @@ import com.appfitnessapp.app.fitnessapp.Arrays.Preparacion;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
-import com.appfitnessapp.app.fitnessapp.Login.SplashPantalla;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -67,7 +54,7 @@ public class DetalleRecetas extends AppCompatActivity {
 
     RecyclerView recyclerIngredientes,recyclerPasos;
 
-    String imagenComida,nombre,tipo,porciones,calorias,minutos,idReceta,id_usuario,nombreIngrediente,descripcionIngrediente;
+    String imagenComida,nombre,tipo,porciones,calorias,minutos,idReceta,id_usuario,nombreIngrediente,descripcionIngrediente,precioMin,precioMax;
 
     static DBProvider dbProvider;
     BajarInfo bajarInfo;
@@ -90,6 +77,8 @@ public class DetalleRecetas extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){
+            precioMax=extras.getString("preciomax");
+            precioMin=extras.getString("preciomin");
             idReceta = extras.getString("id");
             imagenComida = extras.getString("imagen");
             nombre = extras.getString("nombre");
@@ -134,6 +123,7 @@ public class DetalleRecetas extends AppCompatActivity {
         txtPorciones.setText(porciones);
         txtTiempo.setText(minutos);
 
+        txtInversion.setText("Total de inversion: "+"$"+precioMin+" pesos"+"-"+" $"+precioMax+" pesos");
 
         recyclerIngredientes=findViewById(R.id.recyclerIngrediente);
         recyclerPasos=findViewById(R.id.recyclerPreparacion);
@@ -157,7 +147,7 @@ public class DetalleRecetas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nombreIngrediente= ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getNombre_ingrediente();
-                descripcionIngrediente= ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getDescripcion_ingredientes();
+                descripcionIngrediente= ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getDescripcion_ingrediente();
                 showDialog();
 
             }
@@ -224,7 +214,7 @@ public class DetalleRecetas extends AppCompatActivity {
 
     public void bajarIngredientes(){
         Log.e(TAG, "Receta: " + idReceta);
-        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.INGREDIENTES).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.INGREDIENTES).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Feed: " +dataSnapshot );
@@ -257,7 +247,7 @@ public class DetalleRecetas extends AppCompatActivity {
 
     public void bajarPasos(){
 
-        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.PREPARACION).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.PREPARACION).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pasos.clear();

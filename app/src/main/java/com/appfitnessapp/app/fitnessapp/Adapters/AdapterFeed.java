@@ -1,8 +1,6 @@
 package com.appfitnessapp.app.fitnessapp.Adapters;
 
-import android.graphics.Bitmap;
 
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,27 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Arrays.Feed;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.ValueEventListener;
+
 import com.squareup.picasso.Picasso;
 
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.Map;
-import java.util.TimeZone;
+
 
 public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.FeedViewHolder>
         implements View.OnClickListener{
@@ -44,7 +32,6 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.FeedViewHolder
 
     private View.OnClickListener listener;
     ArrayList<Feed> feeds;
-    static DBProvider dbProvider;
 
     private static final String TAG = "BAJARINFO:";
 
@@ -57,7 +44,6 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.FeedViewHolder
         TextView txtPrecio;
         TextView txtHora;
         TextView txtTipoFeed;
-        TextView urlTipo;
         Boolean isGratis;
 
         public FeedViewHolder (View itemView) {
@@ -284,15 +270,6 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.FeedViewHolder
                         .centerCrop()
                         .into(holder.imgFeed);
 
-                /*
-                URL urlAdmin = new URL(feed.getImagen_feed());
-                Picasso.get().load(String.valueOf(urlAdmin))
-                        .error(R.mipmap.ic_launcher)
-                        .fit()
-                        .noFade()
-                        .into(holder.imgAdmin);
-
-                */
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -325,27 +302,5 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.FeedViewHolder
         }
     }
 
-
-
-    private Long getCurrentTime(){
-
-        Long timeStamp =System.currentTimeMillis()/1000;
-        return timeStamp;
-
-    }
-
-    private String getDate(Long timeStamp) {
-
-        Calendar cal = Calendar.getInstance(Locale.getDefault());
-        cal.setTimeInMillis(timeStamp*1000);
-        String date = DateFormat.format("dd-MM-yyyy hh:mm",cal).toString();
-
-        return date;
-    }
-
-    private void saveTime(TextView fecha) {
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        rootRef.child(Contants.TABLA_FEED).child("timestamp").setValue(ServerValue.TIMESTAMP);
-    }
 
 }

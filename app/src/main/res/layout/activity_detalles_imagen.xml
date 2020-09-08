@@ -7,7 +7,7 @@
     android:background="@android:color/black"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Usuario.MenuRegistro.DetallesImagen">
+    tools:context=".Usuario.DetallesImagen">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

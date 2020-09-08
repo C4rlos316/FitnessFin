@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,6 +70,11 @@ public class AgregarPlanes extends AppCompatActivity {
                 if (!nombre.isEmpty() && !meses.isEmpty()&&!costo.isEmpty() && !descripcion.isEmpty()) {
                     dbProvider.subirPlanes(costo,descripcion,key,true,meses,nombre,id);
                     Toast.makeText(AgregarPlanes.this, "Se subio el plan correctamente.", Toast.LENGTH_SHORT).show();
+
+                    Intent i  = new Intent(AgregarPlanes.this,AdminAgregarFeed.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                    finish();
 
 
 

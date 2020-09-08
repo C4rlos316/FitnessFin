@@ -18,27 +18,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterPreguntas;
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterRespuestas;
-import com.appfitnessapp.app.fitnessapp.Admin.AgregarIngredientes;
 import com.appfitnessapp.app.fitnessapp.Arrays.Preguntas;
-import com.appfitnessapp.app.fitnessapp.Arrays.Respuestas;
-import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
-import com.appfitnessapp.app.fitnessapp.Login.SplashPantalla;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_UPago.Menu_UsuarioPago;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_Usuario;
-import com.google.firebase.auth.FirebaseAuth;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuPago.Menu_UsuarioPago;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 
 public class Formulario extends AppCompatActivity {
 
@@ -55,7 +42,7 @@ public class Formulario extends AppCompatActivity {
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
 
-    String id;
+    String id,admin;
 
     Button btnGuardar;
 
@@ -73,6 +60,7 @@ public class Formulario extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id =extras.getString("id");
+            admin=extras.getString("admin");
 
 
         }
@@ -120,7 +108,7 @@ public class Formulario extends AppCompatActivity {
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id_) {
                         aceptar();
-                        Toast.makeText(Formulario.this, "Se subio la información correctamente.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Formulario.this, R.string.toast_pagado, Toast.LENGTH_LONG).show();
                         new CountDownTimer(1000,1){
                             @Override
                             public void onTick(long l) {
@@ -260,7 +248,7 @@ public class Formulario extends AppCompatActivity {
         progressDialog.setMessage("Cargando Información...");
         progressDialog.show();
         progressDialog.setCancelable(false);
-        dbProvider.formulario().addValueEventListener(new ValueEventListener() {
+        dbProvider.formulario().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");
@@ -269,91 +257,97 @@ public class Formulario extends AppCompatActivity {
                         //Log.e(TAG,"Usuarios: "+ snapshot);
                         Preguntas preguntas = snapshot.getValue(Preguntas.class);
 
-                        switch (preguntas.getNombre_pregunta()){
+
+                        if (preguntas.getAdmin().equals(admin)) {
+
+
+                        switch (preguntas.getNombre_pregunta()) {
                             case Contants.PREGUNTA_1:
                                 txtPregunta1.setText(preguntas.getPregunta());
-                                id_1=preguntas.getId_pregunta();
+                                id_1 = preguntas.getId_pregunta();
                                 txtPregunta1.setVisibility(View.VISIBLE);
                                 edtRespuesta1.setVisibility(View.VISIBLE);
-                                Log.e(TAG, "Id1:"+id_1);
+                                Log.e(TAG, "Id1:" + id_1);
                                 break;
 
                             case Contants.PREGUNTA_2:
                                 txtPregunta2.setText(preguntas.getPregunta());
-                                id_2=preguntas.getId_pregunta();
+                                id_2 = preguntas.getId_pregunta();
                                 txtPregunta2.setVisibility(View.VISIBLE);
                                 edtRespuesta2.setVisibility(View.VISIBLE);
-                                Log.e(TAG, "Id2:"+id_2);
+                                Log.e(TAG, "Id2:" + id_2);
 
                                 break;
 
                             case Contants.PREGUNTA_3:
                                 txtPregunta3.setText(preguntas.getPregunta());
-                                id_3=preguntas.getId_pregunta();
+                                id_3 = preguntas.getId_pregunta();
                                 txtPregunta3.setVisibility(View.VISIBLE);
                                 edtRespuesta3.setVisibility(View.VISIBLE);
-                                Log.e(TAG, "Id3:"+id_3);
+                                Log.e(TAG, "Id3:" + id_3);
 
                                 break;
                             case Contants.PREGUNTA_4:
                                 txtPregunta4.setText(preguntas.getPregunta());
-                                id_4=preguntas.getId_pregunta();
+                                id_4 = preguntas.getId_pregunta();
                                 txtPregunta4.setVisibility(View.VISIBLE);
                                 edtRespuesta4.setVisibility(View.VISIBLE);
-                                Log.e(TAG, "I4:"+id_4);
+                                Log.e(TAG, "I4:" + id_4);
 
                                 break;
 
                             case Contants.PREGUNTA_5:
                                 txtPregunta5.setText(preguntas.getPregunta());
-                                id_5=preguntas.getId_pregunta();
+                                id_5 = preguntas.getId_pregunta();
                                 txtPregunta5.setVisibility(View.VISIBLE);
                                 edtRespuesta5.setVisibility(View.VISIBLE);
-                                Log.e(TAG, "Id5:"+id_5);
+                                Log.e(TAG, "Id5:" + id_5);
 
                                 break;
 
                             case Contants.PREGUNTA_6:
                                 txtPregunta6.setText(preguntas.getPregunta());
-                                id_6=preguntas.getId_pregunta();
+                                id_6 = preguntas.getId_pregunta();
                                 txtPregunta6.setVisibility(View.VISIBLE);
                                 edtRespuesta6.setVisibility(View.VISIBLE);
-                                Log.e(TAG, "Id6:"+id_6);
+                                Log.e(TAG, "Id6:" + id_6);
                                 break;
 
                             case Contants.PREGUNTA_7:
                                 txtPregunta7.setText(preguntas.getPregunta());
-                                id_7=preguntas.getId_pregunta();
+                                id_7 = preguntas.getId_pregunta();
                                 txtPregunta7.setVisibility(View.VISIBLE);
                                 edtRespuesta7.setVisibility(View.VISIBLE);
-                                Log.e(TAG, "Id7:"+id_7);
+                                Log.e(TAG, "Id7:" + id_7);
 
                                 break;
 
                             case Contants.PREGUNTA_8:
                                 txtPregunta8.setText(preguntas.getPregunta());
-                                id_8=preguntas.getId_pregunta();
+                                id_8 = preguntas.getId_pregunta();
                                 txtPregunta8.setVisibility(View.VISIBLE);
                                 edtRespuesta8.setVisibility(View.VISIBLE);
                                 break;
 
                             case Contants.PREGUNTA_9:
                                 txtPregunta9.setText(preguntas.getPregunta());
-                                id_9=preguntas.getId_pregunta();
+                                id_9 = preguntas.getId_pregunta();
                                 txtPregunta9.setVisibility(View.VISIBLE);
                                 edtRespuesta9.setVisibility(View.VISIBLE);
                                 break;
 
                             case Contants.PREGUNTA_10:
                                 txtPregunta10.setText(preguntas.getPregunta());
-                                id_10=preguntas.getId_pregunta();
+                                id_10 = preguntas.getId_pregunta();
                                 txtPregunta10.setVisibility(View.VISIBLE);
                                 edtRespuesta10.setVisibility(View.VISIBLE);
                                 break;
 
-                              default:
-                                  break;
+                            default:
+                                break;
                         }
+
+                    }
                         progressDialog.dismiss();
 
                     }

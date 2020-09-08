@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,7 +52,7 @@ public class EjerciciosLista extends AppCompatActivity {
 
     String video,nombre,id_ejercicio;
 
-    String id_imagen,img1,img2,img3;
+    String img1,img2,img3;
 
 
     @Override
@@ -143,9 +142,14 @@ public class EjerciciosLista extends AppCompatActivity {
                 if (!rondas.isEmpty()&&!repeticiones.isEmpty()){
                     dbProvider.subirEjerciciosPlan(nombre,rondas,repeticiones,video,key,id_ejercicio);
                     dbProvider.subirImagenesEjercicios(img1,img2,img3,key,id_ejercicio);
-                    Toast.makeText(EjerciciosLista.this, "Se subio la información", Toast.LENGTH_SHORT).show();
-                    finish();
 
+                    Toast.makeText(EjerciciosLista.this, "Se agrego el ejercicio correctamente.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(EjerciciosLista.this, AdminDiaTabla.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id",id);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    finish();
 
                 }
                 else {
@@ -181,7 +185,7 @@ public class EjerciciosLista extends AppCompatActivity {
         progressDialog.show();
         progressDialog.setCancelable(false);
 
-        dbProvider.tablaEjercicios().addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaEjercicios().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");
@@ -216,7 +220,7 @@ public class EjerciciosLista extends AppCompatActivity {
     public void bajarImagenes(String IDEjercicio){
 
         dbProvider = new DBProvider();
-        dbProvider.tablaEjercicios().child(IDEjercicio).child(Contants.IMAGENES_EJERCICIO).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaEjercicios().child(IDEjercicio).child(Contants.IMAGENES_EJERCICIO).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {

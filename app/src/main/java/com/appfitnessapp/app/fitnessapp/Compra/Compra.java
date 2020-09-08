@@ -45,7 +45,7 @@ public class Compra extends AppCompatActivity implements PurchasesUpdatedListene
                     enableOrDisableButtons(true);
 
                 } else {
-                    Toast.makeText(Compra.this, "Ödeme sistemi için google play hesabını kontrol ediniz", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Compra.this, "", Toast.LENGTH_SHORT).show();
                     enableOrDisableButtons(false);
                 }
             }
@@ -55,7 +55,7 @@ public class Compra extends AppCompatActivity implements PurchasesUpdatedListene
                 // Try to restart the connection on the next request to
                 // Google Play by calling the startConnection() method.
                 enableOrDisableButtons(false);
-                Toast.makeText(Compra.this, "Ödeme sistemi şuanda geçerli değil", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Compra.this, "", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,7 +63,7 @@ public class Compra extends AppCompatActivity implements PurchasesUpdatedListene
             @Override
             public void onClick(View v) {
 
-            buySubscription("50_buy_health");
+            buySubscription("");
 
 
             }
@@ -73,7 +73,7 @@ public class Compra extends AppCompatActivity implements PurchasesUpdatedListene
             @Override
             public void onClick(View v) {
 
-                buyProduct("10_buy_health");
+                buyProduct("");
 
 
             }
@@ -83,7 +83,7 @@ public class Compra extends AppCompatActivity implements PurchasesUpdatedListene
             @Override
             public void onClick(View v) {
 
-                buyProduct("3_buy_health");
+                buyProduct("");
 
             }
         });
@@ -91,7 +91,7 @@ public class Compra extends AppCompatActivity implements PurchasesUpdatedListene
         btn_twenty_buy_health.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buyProduct("20_buy_health");
+                buyProduct("");
 
             }
         });

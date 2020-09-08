@@ -4,18 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AgregarPregunta extends AppCompatActivity {
 
@@ -26,7 +23,7 @@ public class AgregarPregunta extends AppCompatActivity {
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
 
-    String key;
+    String key,id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +38,8 @@ public class AgregarPregunta extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         dbProvider = new DBProvider();
+
+        id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         edtNumeroPregunta=findViewById(R.id.edtPaso);
         edtPregunta=findViewById(R.id.edtDescripcionPaso);
@@ -58,7 +57,7 @@ public class AgregarPregunta extends AppCompatActivity {
 
                 if (!numero.isEmpty()&&!pregunta.isEmpty()){
                     key = dbProvider.formulario().push().getKey();
-                    dbProvider.subirPreguntas(key,"pregunta_"+numero, pregunta);
+                    dbProvider.subirPreguntas(key,id,"pregunta_"+numero, pregunta);
                     Toast.makeText(AgregarPregunta.this, "Se subio la pregunta", Toast.LENGTH_SHORT).show();
                     edtPregunta.getText().clear();
                     edtNumeroPregunta.getText().clear();

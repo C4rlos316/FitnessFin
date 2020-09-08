@@ -165,7 +165,7 @@ public class AdminRecetaDetalle extends AppCompatActivity {
     public void bajarIngredientes(){
 
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.INGREDIENTES).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.INGREDIENTES).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ingredientes.clear();
@@ -200,7 +200,7 @@ public class AdminRecetaDetalle extends AppCompatActivity {
     public void bajarPasos(){
 
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.PREPARACION).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.PREPARACION).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pasos.clear();

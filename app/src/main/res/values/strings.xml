@@ -129,6 +129,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_menu__usuario_pago">Menu_UsuarioPago</string>
+    <string name="toast_pagado">Tu información se ha enviado a tu asesor recibirás una notificación cuando se te haya creado tu plan de acuerdo a tus necesidades.</string>
 
 
 </resources>

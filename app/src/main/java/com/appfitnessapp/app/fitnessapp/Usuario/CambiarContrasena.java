@@ -1,8 +1,6 @@
 package com.appfitnessapp.app.fitnessapp.Usuario;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
-import com.appfitnessapp.app.fitnessapp.Login.IniciarSesion;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -91,13 +88,6 @@ public class CambiarContrasena extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(CambiarContrasena.this, "Se ha cambiado la contraseña correctamente, vuelve a iniciar sesión.", Toast.LENGTH_SHORT).show();
                     dbProvider.updatePass(pass, id);
-                   /*
-                    mAuth.signOut();
-                    Intent intent=new Intent(CambiarContrasena.this,IniciarSesion.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-
-                    */
                 } else {
                     Toast.makeText(CambiarContrasena.this, "Lo siento, hubo un error al cambiar la contraseña", Toast.LENGTH_SHORT).show();
                 }

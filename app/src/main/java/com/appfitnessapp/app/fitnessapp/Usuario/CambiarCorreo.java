@@ -93,12 +93,8 @@ public class CambiarCorreo extends AppCompatActivity {
                     //sendVerificationEmail();
                     Toast.makeText(CambiarCorreo.this, "Se ha cambiado el correo correctamente, revisa tu email y valídalo y vuelve a iniciar sesión.", Toast.LENGTH_SHORT).show();
                     dbProvider.updateEmail(email,id);
-                  //  mAuth.signOut();
-                   // Intent intent=new Intent(CambiarCorreo.this,IniciarSesion.class);
-                   // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                   // startActivity(intent);
+
                 } else {
-                    // Log.e(TAG, "Error : " + task.getResult());
 
                     Toast.makeText(CambiarCorreo.this, "Lo siento, hubo un error al cambiar el correo", Toast.LENGTH_SHORT).show();
                 }

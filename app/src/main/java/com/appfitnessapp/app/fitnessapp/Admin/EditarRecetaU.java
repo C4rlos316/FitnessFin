@@ -165,7 +165,7 @@ public class EditarRecetaU extends AppCompatActivity {
                 bundle.putString("id",ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getId_ingrediente());
                 bundle.putString("nombre",ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getNombre_ingrediente());
                 bundle.putString("cantidad",ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getCantidad());
-                bundle.putString("descripcion",ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getDescripcion_ingredientes());
+                bundle.putString("descripcion",ingredientes.get(recyclerIngredientes.getChildAdapterPosition(v)).getDescripcion_ingrediente());
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -277,7 +277,7 @@ public class EditarRecetaU extends AppCompatActivity {
     public void bajarIngredientes(){
 
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.INGREDIENTES).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.INGREDIENTES).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ingredientes.clear();
@@ -311,7 +311,7 @@ public class EditarRecetaU extends AppCompatActivity {
     public void bajarPasos(){
 
         dbProvider = new DBProvider();
-        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.PREPARACION).addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaPlanAlimenticio().child(idReceta).child(Contants.PREPARACION).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pasos.clear();

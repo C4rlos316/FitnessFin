@@ -4,8 +4,6 @@ package com.appfitnessapp.app.fitnessapp.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,7 +34,6 @@ public class AdapterPreguntas extends RecyclerView.Adapter<AdapterPreguntas.Preg
         public PreguntasViewHolder (View itemView) {
             super(itemView);
             txtPregunta=itemView.findViewById(R.id.txtPregunta);
-            numPregunta=itemView.findViewById(R.id.numPregunta);
 
 
         }
@@ -62,10 +59,7 @@ public class AdapterPreguntas extends RecyclerView.Adapter<AdapterPreguntas.Preg
     public void onBindViewHolder(@NonNull AdapterPreguntas.PreguntasViewHolder holder, final int position) {
         Preguntas pregunta = preguntas.get(position);
 
-        holder.numPregunta.setText(pregunta.getNombre_pregunta());
         holder.txtPregunta.setText(pregunta.getPregunta());
-
-
 
     }
 
@@ -82,17 +76,6 @@ public class AdapterPreguntas extends RecyclerView.Adapter<AdapterPreguntas.Preg
             return preguntas.size();
         }
 
-    }
-
-    public void updateList(List<Preguntas> student)
-    {
-        student = student;
-        notifyDataSetChanged();
-    }
-    public void addItem(int position, Preguntas stud)
-    {
-        preguntas.add(position, stud);
-        notifyItemInserted(position);
     }
 
 

@@ -1,22 +1,17 @@
 package com.appfitnessapp.app.fitnessapp.Adapters;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.appfitnessapp.app.fitnessapp.Arrays.Preguntas;
 import com.appfitnessapp.app.fitnessapp.Arrays.Respuestas;
 import com.appfitnessapp.app.fitnessapp.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdapterRespuestas  extends RecyclerView.Adapter<AdapterRespuestas.RespuestasViewHolder>
         implements View.OnClickListener {

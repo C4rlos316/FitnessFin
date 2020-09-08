@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -30,17 +29,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.appfitnessapp.app.fitnessapp.Admin.AdminPerfil;
-import com.appfitnessapp.app.fitnessapp.Admin.EditarPerfilAdmin;
 import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.Login.IniciarSesion;
-import com.appfitnessapp.app.fitnessapp.Login.SplashPantalla;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.FragmentsU.MenuPerfilU;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_Usuario;
+import com.appfitnessapp.app.fitnessapp.Usuario.MenuSinPago.Menu_Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,7 +54,6 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -74,22 +68,17 @@ public class EditarPerfil extends AppCompatActivity {
     Spinner spinnerPeso,spinnerEstatura,spinnerBuscando;
     LinearLayout btnAceptar;
 
-    public static final int REQUEST_CODE = 1234;
     private Uri imgUri;
 
     private StorageReference mStorage;
     private ProgressDialog progressDialog;
     private static FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener listener;
 
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
     BajarInfo bajarInfo;
 
     String id,email,password,name,telefono,imagen;
-    Boolean isFotoReady = false;
-    String selectDay;
-
 
     ArrayAdapter<String> Saltura;
     ArrayAdapter<String> Speso;
@@ -100,8 +89,6 @@ public class EditarPerfil extends AppCompatActivity {
     private AlphaAnimation buttonClick = new AlphaAnimation(3F, 0.9F);
 
     int isFirstTimePeso = 0;
-    Boolean isFirstTimeEStatura = true;
-    Boolean isFirstTimeObjetivo = true;
 
 
     String peso="nil";
@@ -296,7 +283,7 @@ public class EditarPerfil extends AppCompatActivity {
         progressDialog.setMessage("Cargando Información...");
         progressDialog.show();
 
-        dbProvider.usersRef().addValueEventListener(new ValueEventListener() {
+        dbProvider.usersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.e(TAG, "Usuarios 4: ");

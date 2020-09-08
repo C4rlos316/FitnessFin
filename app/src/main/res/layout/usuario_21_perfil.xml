@@ -414,6 +414,7 @@
 
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:gravity="center"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -473,6 +474,7 @@
                             android:background="@android:color/darker_gray" />
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/linAse"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

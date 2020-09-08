@@ -1,58 +1,30 @@
 package com.appfitnessapp.app.fitnessapp.Admin;
 
-import android.Manifest;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Bundle;
 
-import android.provider.MediaStore;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.Calificar;
-import com.appfitnessapp.app.fitnessapp.subirArchivos;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 public class EscogerPlan extends AppCompatActivity {
 
-    TextView btnRecetas,btnGuardar;
+    TextView btnGuardar;
     ImageView btnAgregarEjercicio;
     EditText edtDescripcion,edtTiempo,edtNumEjercicios;
 
@@ -120,7 +92,6 @@ public class EscogerPlan extends AppCompatActivity {
             }
         });
 
-        btnRecetas=findViewById(R.id.btnRecetas);
         btnAgregarEjercicio=findViewById(R.id.btnAgregarEjercicio);
 
         edtDescripcion=findViewById(R.id.edtDescripcion);
@@ -132,19 +103,7 @@ public class EscogerPlan extends AppCompatActivity {
         btnGuardar=findViewById(R.id.txtGuardar);
 
 
-        btnRecetas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EscogerPlan.this, AgregarRecetas.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("id",id);
-                intent.putExtras(bundle);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
 
-            }
-        });
 
         btnAgregarEjercicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,12 +131,6 @@ public class EscogerPlan extends AppCompatActivity {
                 if (!descripcion.isEmpty()&&!tiempo.isEmpty()&&!ejercicios.isEmpty()){
 
 
-                    //ejercicios Solo
-                    /*
-                String keyEjercicio = dbProvider.tablaEjercicios().push().getKey();
-                dbProvider.subirEjercicios(tiempo,nivelEjercicio,ejercicios,descripcion,keyEjercicio,id,"1");
-                */
-
                     switch (diaEscogido) {
                         case "Domingo":
                             dbProvider.subirPlanEjercicio(tiempo, nivelEjercicio, ejercicios, descripcion, key, id, "1");
@@ -188,6 +141,7 @@ public class EscogerPlan extends AppCompatActivity {
                             intent.putExtras(bundle);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            finish();
                             break;
                         case "Lunes":
                             dbProvider.subirPlanEjercicio(tiempo, nivelEjercicio, ejercicios, descripcion, key, id, "2");
@@ -198,6 +152,7 @@ public class EscogerPlan extends AppCompatActivity {
                             intent1.putExtras(bundle1);
                             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent1);
+                            finish();
 
                             break;
                         case "Martes":
@@ -209,6 +164,7 @@ public class EscogerPlan extends AppCompatActivity {
                             intent2.putExtras(bundle2);
                             intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent2);
+                            finish();
                             break;
                         case "Miércoles":
                             dbProvider.subirPlanEjercicio(tiempo, nivelEjercicio, ejercicios, descripcion, key, id, "4");
@@ -219,6 +175,7 @@ public class EscogerPlan extends AppCompatActivity {
                             intent3.putExtras(bundle3);
                             intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent3);
+                            finish();
 
                             break;
                         case "Jueves":
@@ -230,6 +187,7 @@ public class EscogerPlan extends AppCompatActivity {
                             intent4.putExtras(bundle4);
                             intent4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent4);
+                            finish();
 
                             break;
                         case "Viernes":
@@ -241,6 +199,7 @@ public class EscogerPlan extends AppCompatActivity {
                             intent5.putExtras(bundle5);
                             intent5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent5);
+                            finish();
 
                             break;
                         case "Sábado":
@@ -252,6 +211,7 @@ public class EscogerPlan extends AppCompatActivity {
                             intent6.putExtras(bundle6);
                             intent6.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent6);
+                            finish();
 
                             break;
                     }

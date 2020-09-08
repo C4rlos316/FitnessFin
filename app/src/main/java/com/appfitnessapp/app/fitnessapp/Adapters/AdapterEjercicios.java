@@ -1,26 +1,17 @@
 package com.appfitnessapp.app.fitnessapp.Adapters;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.appfitnessapp.app.fitnessapp.Arrays.Asesorias;
 import com.appfitnessapp.app.fitnessapp.Arrays.Ejercicios;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class AdapterEjercicios extends RecyclerView.Adapter<AdapterEjercicios.EjericiosViewHolder>
@@ -37,7 +28,7 @@ public class AdapterEjercicios extends RecyclerView.Adapter<AdapterEjercicios.Ej
 
 
 
-        TextView txtTipoEjercicio,txtRepeticiones,txtRondas;
+        TextView txtTipoEjercicio;
 
         public EjericiosViewHolder (View itemView) {
             super(itemView);

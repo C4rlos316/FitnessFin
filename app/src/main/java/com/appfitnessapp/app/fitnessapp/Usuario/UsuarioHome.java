@@ -55,9 +55,7 @@ import java.util.Map;
 
 public class UsuarioHome  extends AppCompatActivity {
 
-    //ImageButton imgPlan,imgPerfil,imgChat,imgHome;
     private static final int PDF_CODE = 1000 ;
-
 
     static DBProvider dbProvider;
     BajarInfo bajarInfo;
@@ -117,55 +115,7 @@ public class UsuarioHome  extends AppCompatActivity {
         bajarInfo = new BajarInfo();
 
 
-        /*
-        imgPlan=findViewById(R.id.imgPlan);
-        imgPerfil=findViewById(R.id.imgPerfil);
-        imgChat=findViewById(R.id.imgChat);
 
-        imgHome=findViewById(R.id.imgHome);
-
-
-        imgPlan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(UsuarioHome.this, UsuarioPlan.class);
-                intent.putExtra("anim id in", R.anim.move_in);
-                intent.putExtra("anim id out", R.anim.move_leeft_in);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                overridePendingTransition(R.anim.move, R.anim.move_leeft);
-            }
-        });
-
-        imgPerfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UsuarioHome.this, UsuarioPerfil.class);
-                intent.putExtra("anim id in", R.anim.move_in);
-                intent.putExtra("anim id out", R.anim.move_leeft_in);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                overridePendingTransition(R.anim.move, R.anim.move_leeft);
-
-
-            }
-        });
-
-        imgChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UsuarioHome.this, ChatActivityUsuario.class);
-                intent.putExtra("anim id in", R.anim.move_in);
-                intent.putExtra("anim id out", R.anim.move_leeft_in);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                overridePendingTransition(R.anim.move, R.anim.move_leeft);
-            }
-        });
-
-*/
 
         recyclerView=findViewById(R.id.recyclerview);
 
@@ -296,7 +246,7 @@ public class UsuarioHome  extends AppCompatActivity {
       //  feeds.removeAll(feeds);
 
         dbProvider = new DBProvider();
-        dbProvider.tablaFeed().addValueEventListener(new ValueEventListener() {
+        dbProvider.tablaFeed().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 feeds.clear();
@@ -344,58 +294,6 @@ public class UsuarioHome  extends AppCompatActivity {
     }
 
 
-
-    private String getDate(Long timeStamp) {
-
-        Calendar cal = Calendar.getInstance(Locale.getDefault());
-        cal.setTimeInMillis(timeStamp*1000);
-        String date = DateFormat.format("dd-MM-yyyy hh:mm",cal).toString();
-
-        return date;
-    }
-    private void Compare() {
-
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ezzeearnRef = rootRef.child(Contants.TABLA_FEED).child("timestamp");
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    Long time = dataSnapshot.getValue(Long.class);
-                    assert time != null;
-                    Date oldDate = new Date(time);
-                    GregorianCalendar oldCalendar = new GregorianCalendar();
-                    oldCalendar.setTime(oldDate);
-                    GregorianCalendar newCalendar = new GregorianCalendar();
-
-
-                    Map<String, String> now = ServerValue.TIMESTAMP;
-                    newCalendar.setTime((Date) now);
-
-                    if (newCalendar.get(Calendar.DATE) != oldCalendar.get(Calendar.DATE) ||
-                            newCalendar.get(Calendar.MONTH) != oldCalendar.get(Calendar.MONTH) ||
-                            newCalendar.get(Calendar.YEAR) != oldCalendar.get(Calendar.YEAR)
-
-                            ) {
-                        // new day starts toast
-                    }
-
-
-                }else{
-                    // toast
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        ezzeearnRef.addValueEventListener(eventListener);
-
-    }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -409,10 +307,7 @@ public class UsuarioHome  extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        /*
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
+
         finish();
         overridePendingTransition(
                 getIntent().getIntExtra("anim id in", R.anim.move_in),

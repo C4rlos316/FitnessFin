@@ -28,16 +28,16 @@
         <activity android:name=".Admin.AgregarPlanes" />
         <activity android:name=".Admin.AdminPlanes" />
         <activity
-            android:name=".menu_nuevo.Menu_UPago.Menu_UsuarioPago"
+            android:name=".Usuario.MenuPago.Menu_UsuarioPago"
             android:label="@string/title_activity_menu__usuario"
             android:theme="@style/AppTheme.AppBarOverlay" />
-        <activity android:name=".menu_nuevo.FragmentsU.QuienAsesoria" />
+        <activity android:name=".Usuario.QuienAsesoria" />
         <activity
-            android:name=".menu_nuevo.Menu_Usuario"
+            android:name=".Usuario.MenuSinPago.Menu_Usuario"
             android:label="@string/title_activity_menu__usuario"
             android:theme="@style/AppTheme.AppBarOverlay" />
         <activity
-            android:name=".Usuario.MenuRegistro.DetallesImagen"
+            android:name=".Usuario.DetallesImagen"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Login.SplashPantalla"
@@ -58,7 +58,6 @@
             android:name=".Usuario.UsuarioHome"
             android:screenOrientation="portrait"
             android:theme="@style/YourTheme" />
-        <activity android:name=".viewPdf" />
         <activity
             android:name=".Usuario.UsuarioPerfil"
             android:screenOrientation="portrait"
@@ -73,20 +72,11 @@
         <activity android:name=".Usuario.PantallaPDF" />
         <activity android:name=".Usuario.Imagen" />
         <activity
-            android:name=".Usuario.Video"
-            android:theme="@style/TemaVideo" />
-        <activity
             android:name=".Usuario.ChatActivityUsuario"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Login.OlvidarContrasena"
             android:parentActivityName=".Login.IniciarSesion"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Usuario.FeedSinRegistro.Asesoria"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Usuario.FeedSinRegistro.HomeSinRegistro"
             android:screenOrientation="portrait" />
         <activity android:name=".Usuario.Paypal.PaymentDetails" />
         <activity android:name=".Usuario.Paypal.PaymentPdf" />
@@ -145,15 +135,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/TemaVideo" /> <!-- android:screenOrientation="landscape"> -->
         <activity
-            android:name=".Usuario.MenuRegistro.Home"
-            android:screenOrientation="portrait"
-            android:theme="@style/YourTheme" />
-        <activity
-            android:name=".Usuario.MenuRegistro.AsesoriaRegistro"
-            android:screenOrientation="portrait"
-            android:theme="@style/YourTheme" />
-        <activity
-            android:name=".Usuario.MenuRegistro.Perfil"
+            android:name=".Usuario.AsesoriaRegistro"
             android:screenOrientation="portrait"
             android:theme="@style/YourTheme" />
         <activity
@@ -178,7 +160,7 @@
             android:name=".Alarma.AlarmaCena"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Usuario.MenuRegistro.MetodoPagoAsesoria"
+            android:name=".Usuario.MetodoPagoAsesoria"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".Alarma.AlertaRecibidaDesayuno" />
@@ -294,6 +276,7 @@
             android:name=".Admin.AgregarEbooks"
             android:screenOrientation="portrait" />
         <activity android:name=".Admin.EditarPlanes" />
+        <activity android:name=".Admin.AgregarRutinas" />
 
         <service android:name=".Notificaciones.FirebaseInstanceService">
             <intent-filter>

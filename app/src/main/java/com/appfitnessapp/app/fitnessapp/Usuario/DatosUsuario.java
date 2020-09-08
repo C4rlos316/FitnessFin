@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
@@ -14,26 +13,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
+import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
-import com.appfitnessapp.app.fitnessapp.Login.SplashPantalla;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.squareup.picasso.Picasso;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class DatosUsuario extends AppCompatActivity {
 
@@ -44,8 +31,7 @@ public class DatosUsuario extends AppCompatActivity {
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
     private ProgressDialog progressDialog;
-    String id;
-    int selectionEstatura,selectionPeso,selectionObjetivo;
+    String id,admin;
     ArrayAdapter<String> altura;
     ArrayAdapter<String> peso;
     ArrayAdapter<String> buscando;
@@ -64,6 +50,7 @@ public class DatosUsuario extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id =extras.getString("id");
+            admin=extras.getString("admin");
 
 
         }
@@ -72,14 +59,7 @@ public class DatosUsuario extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
 
-
-
-
         dbProvider = new DBProvider();
-
-
-        //bajarUsuarios();
-
 
 
         spinnerAltura=findViewById(R.id.spinnerAltura);
@@ -187,10 +167,6 @@ public class DatosUsuario extends AppCompatActivity {
                 String estatura = spinnerAltura.getSelectedItem().toString();
                 String peso = spinnerPeso.getSelectedItem().toString();
 
-                String hombre=Contants.HOMBRE;
-                String mujer=Contants.MUJER;
-
-
                 if (imgHombre.isClickable()){
 
                     dbProvider.updateObjetivo(objetivo, id);
@@ -199,19 +175,6 @@ public class DatosUsuario extends AppCompatActivity {
 
 
 
-
-                    /*
-                    if (!String.valueOf(selectionObjetivo).equals(objetivo)){
-                        dbProvider.updateObjetivo(objetivo, id);
-                    }
-                    if (!String.valueOf(selectionEstatura).equals(estatura)){
-                        dbProvider.updateEstatura(estatura, id);
-                    }
-                    if (!String.valueOf(selectionPeso).equals(peso)){
-                        dbProvider.updatePeso(peso,id);
-                    }
-                    */
-
                     new CountDownTimer(1000,1){
                         @Override
                         public void onTick(long l) {
@@ -219,10 +182,13 @@ public class DatosUsuario extends AppCompatActivity {
 
                         @Override
                         public void onFinish() {
+
+                            Toast.makeText(DatosUsuario.this, "Se guardaron tus datos correctamente.", Toast.LENGTH_LONG).show();
                             Intent intent=new Intent(DatosUsuario.this, Formulario.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             Bundle bundle = new Bundle();
                             bundle.putString("id",id);
+                            bundle.putString("admin",admin);
                             intent.putExtras(bundle);
                             startActivity(intent);
                             finish();
@@ -238,18 +204,6 @@ public class DatosUsuario extends AppCompatActivity {
                     dbProvider.updateObjetivo(objetivo, id);
                     dbProvider.updateEstatura(estatura, id);
                     dbProvider.updatePeso(peso,id);
-
-                    /*
-                    if (!String.valueOf(selectionObjetivo).equals(objetivo)){
-                        dbProvider.updateObjetivo(objetivo, id);
-                    }
-                    if (!String.valueOf(selectionEstatura).equals(estatura)){
-                        dbProvider.updateEstatura(estatura, id);
-                    }
-                    if (!String.valueOf(selectionPeso).equals(peso)){
-                        dbProvider.updatePeso(peso,id);
-                    }
-                    */
 
                     new CountDownTimer(1000,1){
                         @Override
@@ -276,47 +230,10 @@ public class DatosUsuario extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Por favor llena el formulario para continuar.", Toast.LENGTH_SHORT).show();
 
-    public void bajarUsuarios(){
-        dbProvider = new DBProvider();
-
-        progressDialog.setMessage("Cargando Información...");
-        progressDialog.show();
-        progressDialog.setCancelable(false);
-
-        dbProvider.usersRef().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.e(TAG, "Usuarios 4: ");
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        //Log.e(TAG,"Usuarios: "+ snapshot);
-                        Log.e(TAG, "Usuarios: " + snapshot);
-                        Usuarios usuarios = snapshot.getValue(Usuarios.class);
-
-                        if (usuarios.getId_usuario().equals(id)) {
-                            //para bajar la info y ponerle en el spinner
-                            selectionEstatura= altura.getPosition(usuarios.getEstatura());
-                            spinnerAltura.setSelection(selectionEstatura);
-
-                            selectionPeso= peso.getPosition(usuarios.getPeso_actual());
-                            spinnerPeso.setSelection(selectionPeso);
-
-                            selectionObjetivo= buscando.getPosition(usuarios.getObjetivo());
-                            spinnerBuscando.setSelection(selectionObjetivo);
-                            progressDialog.dismiss();
-                        }
-
-                    }
-                } else {
-                    Log.e(TAG, "Usuarios 3: ");
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
     }
 
 }

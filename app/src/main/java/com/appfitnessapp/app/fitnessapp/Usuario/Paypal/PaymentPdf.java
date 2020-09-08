@@ -11,16 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.Formulario;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioHome;
-import com.appfitnessapp.app.fitnessapp.menu_nuevo.Menu_Usuario;
+import com.appfitnessapp.app.fitnessapp.Usuario.PantallaPDF;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class PaymentPdf extends AppCompatActivity {
@@ -70,7 +64,7 @@ public class PaymentPdf extends AppCompatActivity {
         try {
 
 
-            Toast.makeText(this, "La compra se realizo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "La compra se realizo con éxito.Puedes encontrar tu PDF en tu perfil en el apartado de COMPRADO.", Toast.LENGTH_LONG).show();
             String key = dbProvider.tablaPdf().push().getKey();
             dbProvider.crearTablaPdf(key, idUsuario, url, descripcion);
             new CountDownTimer(2000, 1) {
@@ -82,9 +76,13 @@ public class PaymentPdf extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    Intent intent = new Intent(PaymentPdf.this, Menu_Usuario.class);
+                    Intent intent = new Intent(PaymentPdf.this, PantallaPDF.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.putExtra("ViewType","internet");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("pdf",url);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
 
@@ -93,7 +91,7 @@ public class PaymentPdf extends AppCompatActivity {
 
 
             //txtId.setText(response.getString("id"));
-            txtStatus.setText(response.getString("state"));
+            txtStatus.setText(response.getString(""));
             //txtAmount .setText("$"+ paymentAmount);
 
         } catch (JSONException e) {

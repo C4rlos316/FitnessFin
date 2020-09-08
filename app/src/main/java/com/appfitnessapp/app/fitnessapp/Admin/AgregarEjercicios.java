@@ -7,9 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,39 +18,25 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterAsesorias;
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterEjercicios;
-import com.appfitnessapp.app.fitnessapp.Arrays.Ejercicios;
-import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 
 public class AgregarEjercicios extends AppCompatActivity {
 
@@ -194,23 +177,6 @@ public class AgregarEjercicios extends AppCompatActivity {
             }
         });
 
-        txtSiguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-            }
-        });
-
-        //ejercicios Solos
-        /*
-                String key = dbProvider.tablaEjercicios().push().getKey();
-                uploadVideo(videoUri,nombre,ronda,repeticiones,key);
-                uploadImage3(key,imagen1Uri.toString(),imagen2Uri.toString(),imagen3Uri.toString());
-        */
-
-
 
     }
 
@@ -280,13 +246,6 @@ public class AgregarEjercicios extends AppCompatActivity {
 
     private void uploadImage3(final String keyPlan,final String keyEjercicio, final String img1, final String img2, String img3) {
 
-/*
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Subiendo...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
-*/
         final String fileName =System.currentTimeMillis()+"";
         final StorageReference storageReference1 =  mStorage.child(Contants.EJERCICIOS).child(fileName);
 
@@ -341,13 +300,6 @@ public class AgregarEjercicios extends AppCompatActivity {
 
     private void uploadImage2( final String keyPlan,final String keyEjercicio,final String imagen1,final String imagen2, final String imagen3) {
 
-        /*
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Subiendo...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
-*/
         final String fileName =System.currentTimeMillis()+"";
         final StorageReference storageReference1 =  mStorage.child(Contants.EJERCICIOS).child(fileName);
 
@@ -400,13 +352,6 @@ public class AgregarEjercicios extends AppCompatActivity {
 
     private void uploadImage1( final String keyPlan,final String keyEjercicio, String imagen1, final String imagen2, final String imagen3) {
 
-        /*
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Subiendo...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
-*/
         final String fileName =System.currentTimeMillis()+"";
         final StorageReference storageReference1 =  mStorage.child(Contants.EJERCICIOS).child(fileName);
 
