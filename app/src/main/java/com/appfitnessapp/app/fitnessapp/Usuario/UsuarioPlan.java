@@ -1,15 +1,19 @@
 package com.appfitnessapp.app.fitnessapp.Usuario;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterRecetas;
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanAlimenticio;
+import com.appfitnessapp.app.fitnessapp.Arrays.PlanEntrenamiento;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
@@ -29,6 +34,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.androidquery.util.AQUtility.getContext;
 
 
 public class UsuarioPlan  extends AppCompatActivity {
@@ -43,9 +52,14 @@ public class UsuarioPlan  extends AppCompatActivity {
     String id;
 
 
+
+
+
     static DBProvider dbProvider;
     BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
+
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -58,6 +72,10 @@ public class UsuarioPlan  extends AppCompatActivity {
         getSupportActionBar().setTitle("Plan alimenticio");
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
 
 
         dbProvider = new DBProvider();
@@ -226,6 +244,40 @@ public class UsuarioPlan  extends AppCompatActivity {
         });
 
 
+        btnWorkouts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                progressDialog.setMessage("Cargando Información...");
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+
+                new CountDownTimer(5000,1){
+
+                    @Override
+                    public void onTick(long l) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                        progressDialog.dismiss();
+                        bajarPlanEjercicios(id);
+
+
+
+                    }
+                }.start();
+
+
+
+
+            }
+        });
+
     }
 
 
@@ -316,6 +368,79 @@ public class UsuarioPlan  extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public void bajarPlanEjercicios( final String id){
+
+
+        progressDialog.setMessage("Cargando Información...");
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        dbProvider = new DBProvider();
+        dbProvider.tablaPlanEntrenamiento().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Log.e(TAG, "Feed: " + dataSnapshot);
+                        PlanEntrenamiento planEntrenamiento = snapshot.getValue(PlanEntrenamiento.class);
+
+                        Date date = new Date();
+                        //diaBase
+                        String dia = planEntrenamiento.getDia_ejercicio();
+                        //diaSemana
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(date);
+                        int fechaAc = calendar.get(Calendar.DAY_OF_WEEK);
+
+                        if (planEntrenamiento.getId_plan_ejercicio()!=null) {
+
+
+                            if (planEntrenamiento.getId_usuario().equals(id)){
+
+                                pantalla();
+
+
+
+                            }
+
+                            else {
+                                progressDialog.dismiss();
+                                //Toast.makeText(UsuarioPlan.this, "No hay ejercicios por el momento.", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }
+
+
+                    }
+
+                }
+
+
+
+                else {
+                    Log.e(TAG, "Feed: ");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "ERROR: ");
+            }
+        });
+
+    }
+
+
+    public void pantalla(){
+
+        Intent intent = new Intent(UsuarioPlan.this, UsuarioPlanWorkouts.class);
+        Bundle bundle = new Bundle();
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
     }
 
 

@@ -59,20 +59,6 @@ public class DetallePdf extends AppCompatActivity {
 
         }
 
-        Dexter.withActivity(this)
-                .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(new BaseMultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        super.onPermissionsChecked(report);
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        super.onPermissionRationaleShouldBeShown(permissions, token);
-                    }
-                }).check();
-
 
         btnComprar = findViewById(R.id.linearComprarPDF);
 

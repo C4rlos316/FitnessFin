@@ -23,7 +23,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class ListaChat extends AppCompatActivity {
 
@@ -55,6 +62,7 @@ public class ListaChat extends AppCompatActivity {
         id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         bajarInscritos();
+
         dbProvider = new DBProvider();
         bajarInfo = new BajarInfo();
         progressDialog = new ProgressDialog(this);
@@ -124,24 +132,27 @@ public class ListaChat extends AppCompatActivity {
     }
 
     public void bajarInscritos(){
+
         dbProvider = new DBProvider();
 
         dbProvider.tablaInscritos().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+                    asesorias.clear();
+                    adapter.notifyDataSetChanged();
                     for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                        Log.e(TAG, "INSCRITOS: " + snapshot);
+                        Log.e(TAG, "Usuarios: " + snapshot);
                         Inscritos inscritos = snapshot.getValue(Inscritos.class);
 
-                        if(inscritos.getId_usuario()!=null) {
-                            if (inscritos.getAdmin().equals(id)){
-                                    Log.e(TAG, "INSCRITOS true: " + inscritos);
-                                    bajarUsuarios(inscritos.getId_usuario());
+
+                        if (inscritos.getAdmin().equals(id)) {
+                            if (inscritos.getId_pendiente().equals(false)) {
+                                bajarUsuarios2(inscritos.getId_usuario());
+                            }
+                        }
 
 
-                        }
-                        }
                     }
                 }else{
                     Log.e(TAG,"Usuarios 3: ");
@@ -155,32 +166,30 @@ public class ListaChat extends AppCompatActivity {
         });
     }
 
-    public void bajarUsuarios(final String id_usuario){
+
+
+    public void bajarUsuarios2(final String id_usuario2){
+        Log.e(TAG,"Pendiente 2: ");
         dbProvider = new DBProvider();
+
         dbProvider.usersRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                asesorias.clear();
-                Log.e(TAG,"Usuarios 4: ");
+                Log.e(TAG,"Pendiente 4: ");
                 if (dataSnapshot.exists()){
                     for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                        Log.e(TAG, "Usuarios: " + snapshot);
+                        Log.e(TAG, "Pendiente: " + snapshot);
                         Usuarios usuarios = snapshot.getValue(Usuarios.class);
 
-                        if (usuarios.getId_usuario() != null){
-                            if (usuarios.getTipo_usuario().equals(Contants.USUARIO)) {
-
-                                if (usuarios.getId_usuario().equals(id_usuario)) {
-                                    asesorias.add(usuarios);
-                                    adapter.notifyDataSetChanged();
-                                    progressDialog.dismiss();
-                                }
-
-
+                        if (usuarios.getId_usuario()!=null) {
+                            if (usuarios.getId_usuario().equals(id_usuario2)) {
+                                Log.e(TAG, "Pendiente Bien: " + snapshot);
+                                asesorias.add(usuarios);
+                                adapter.notifyDataSetChanged();
+                                progressDialog.dismiss();
                             }
-
-
                         }
+
                     }
                 }else{
                     Log.e(TAG,"Usuarios 3: ");
