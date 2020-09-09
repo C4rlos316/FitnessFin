@@ -47,7 +47,7 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
 
     ImageButton btnAgregarEjecicio;
 
-    String id_plan,id_ejercicio,minutos,descripcion,numeros,dias,nivel;
+    String id_plan,id_ejercicio,minutos,descripcion,numeros;
 
 
     ArrayList<Ejercicios> ejercicios;
@@ -75,8 +75,6 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
             minutos = extras.getString("minutos");
             descripcion = extras.getString("descripcion");
             numeros = extras.getString("numeros");
-            dias = extras.getString("dias");
-            nivel = extras.getString("nivel");
 
             bajarEjercicios();
         }
@@ -122,8 +120,13 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("id",id);
                 bundle.putString("key",id_plan);
+                bundle.putString("tiempo",minutos);
+                bundle.putString("descripcion",descripcion);
+                bundle.putString("ejercicios",numeros);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
 
 
             }
@@ -201,6 +204,7 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
                     bundle.putString("id",id);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    finish();
 
 
                 }
@@ -215,6 +219,8 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
                     bundle.putString("id",id);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    finish();
+
 
 
 
@@ -231,6 +237,7 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
                     bundle.putString("id",id);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    finish();
 
 
 
@@ -241,7 +248,7 @@ public class AdminEditarEjercicio  extends AppCompatActivity {
                 }
 
                 if (descripcionEjer.equals(descripcion)&&numeroEjer.equals(numeros)&&minEjer.equals(minutos)){
-                    Intent intent=new Intent(AdminEditarEjercicio.this, AdminPlanUsuario.class);
+                    Intent intent=new Intent(AdminEditarEjercicio.this, AdminDiaTabla.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     Bundle bundle = new Bundle();
                     bundle.putString("id",id);

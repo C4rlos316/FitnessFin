@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,7 @@ public class EjerciciosLista extends AppCompatActivity {
 
     TextView txtNuevo;
 
-    String video,nombre,id_ejercicio;
+    String video,nombre,id_ejercicio,descripcion,tiempo,numEjercicio;
 
     String img1,img2,img3;
 
@@ -70,6 +71,11 @@ public class EjerciciosLista extends AppCompatActivity {
         if (extras != null) {
             key = extras.getString("key");
             id = extras.getString("id");
+
+            descripcion = extras.getString("descripcion");
+            tiempo = extras.getString("tiempo");
+            numEjercicio = extras.getString("ejercicios");
+
 
         }
 
@@ -97,7 +103,10 @@ public class EjerciciosLista extends AppCompatActivity {
                 Bundle bundle3 = new Bundle();
                 bundle3.putString("key",key);
                 intent3.putExtras(bundle3);
+                intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent3);
+
             }
         });
 
@@ -110,6 +119,7 @@ public class EjerciciosLista extends AppCompatActivity {
                  video= ejercicios.get(recyclerView.getChildAdapterPosition(v)).getVideo_ejercicio();
                 nombre= ejercicios.get(recyclerView.getChildAdapterPosition(v)).getNombre_ejercicio();
                 AlertaEjercicios();
+                bajarImagenes(id_ejercicio);
 
 
             }
@@ -128,6 +138,7 @@ public class EjerciciosLista extends AppCompatActivity {
         final EditText edtRondasAlerta =  sheetView.findViewById(R.id.edtRondasAlerta);
         final EditText edtRepeticonesAlerta =  sheetView.findViewById(R.id.edtRepeticonesAlerta);
 
+
         LinearLayout btnAceptar=sheetView.findViewById(R.id.btnAceptar);
         LinearLayout btnCancelar=sheetView.findViewById(R.id.btnCancelar);
 
@@ -140,13 +151,20 @@ public class EjerciciosLista extends AppCompatActivity {
                 String repeticiones = edtRepeticonesAlerta.getText().toString();
 
                 if (!rondas.isEmpty()&&!repeticiones.isEmpty()){
+
+
+
                     dbProvider.subirEjerciciosPlan(nombre,rondas,repeticiones,video,key,id_ejercicio);
                     dbProvider.subirImagenesEjercicios(img1,img2,img3,key,id_ejercicio);
 
                     Toast.makeText(EjerciciosLista.this, "Se agrego el ejercicio correctamente.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EjerciciosLista.this, AdminDiaTabla.class);
+                    Intent intent = new Intent(EjerciciosLista.this, AdminEditarEjercicio.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("id",id);
+                    bundle.putString("id_plan",key);
+                    bundle.putString("minutos",tiempo);
+                    bundle.putString("descripcion",descripcion);
+                    bundle.putString("numeros",numEjercicio);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
@@ -198,7 +216,7 @@ public class EjerciciosLista extends AppCompatActivity {
                         if (ejercicio.getId_ejercicio()!=null) {
                             ejercicios.add(ejercicio);
                             adapter.notifyDataSetChanged();
-                            bajarImagenes(ejercicio.getId_ejercicio());
+                           // bajarImagenes(ejercicio.getId_ejercicio());
                             progressDialog.dismiss();
 
                         }

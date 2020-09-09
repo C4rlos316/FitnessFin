@@ -138,6 +138,9 @@ public class EscogerPlan extends AppCompatActivity {
                             Bundle bundle = new Bundle();
                             bundle.putString("key",keyPlan);
                             bundle.putString("id",id);
+                            bundle.putString("descripcion",descripcion);
+                            bundle.putString("tiempo",tiempo);
+                            bundle.putString("ejercicios",ejercicios);
                             intent.putExtras(bundle);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
@@ -149,6 +152,9 @@ public class EscogerPlan extends AppCompatActivity {
                             Bundle bundle1 = new Bundle();
                             bundle1.putString("key",keyPlan);
                             bundle1.putString("id",id);
+                            bundle1.putString("descripcion",descripcion);
+                            bundle1.putString("tiempo",tiempo);
+                            bundle1.putString("ejercicios",ejercicios);
                             intent1.putExtras(bundle1);
                             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent1);
@@ -161,6 +167,9 @@ public class EscogerPlan extends AppCompatActivity {
                             Bundle bundle2 = new Bundle();
                             bundle2.putString("key",keyPlan);
                             bundle2.putString("id",id);
+                            bundle2.putString("descripcion",descripcion);
+                            bundle2.putString("tiempo",tiempo);
+                            bundle2.putString("ejercicios",ejercicios);
                             intent2.putExtras(bundle2);
                             intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent2);
@@ -172,6 +181,9 @@ public class EscogerPlan extends AppCompatActivity {
                             Bundle bundle3 = new Bundle();
                             bundle3.putString("key",keyPlan);
                             bundle3.putString("id",id);
+                            bundle3.putString("descripcion",descripcion);
+                            bundle3.putString("tiempo",tiempo);
+                            bundle3.putString("ejercicios",ejercicios);
                             intent3.putExtras(bundle3);
                             intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent3);
@@ -184,6 +196,9 @@ public class EscogerPlan extends AppCompatActivity {
                             Bundle bundle4 = new Bundle();
                             bundle4.putString("key",keyPlan);
                             bundle4.putString("id",id);
+                            bundle4.putString("descripcion",descripcion);
+                            bundle4.putString("tiempo",tiempo);
+                            bundle4.putString("ejercicios",ejercicios);
                             intent4.putExtras(bundle4);
                             intent4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent4);
@@ -196,6 +211,9 @@ public class EscogerPlan extends AppCompatActivity {
                             Bundle bundle5 = new Bundle();
                             bundle5.putString("key",keyPlan);
                             bundle5.putString("id",id);
+                            bundle5.putString("descripcion",descripcion);
+                            bundle5.putString("tiempo",tiempo);
+                            bundle5.putString("ejercicios",ejercicios);
                             intent5.putExtras(bundle5);
                             intent5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent5);
@@ -208,6 +226,9 @@ public class EscogerPlan extends AppCompatActivity {
                             Bundle bundle6 = new Bundle();
                             bundle6.putString("key",keyPlan);
                             bundle6.putString("id",id);
+                            bundle6.putString("descripcion",descripcion);
+                            bundle6.putString("tiempo",tiempo);
+                            bundle6.putString("ejercicios",ejercicios);
                             intent6.putExtras(bundle6);
                             intent6.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent6);

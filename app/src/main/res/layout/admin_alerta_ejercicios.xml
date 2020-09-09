@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="15dp"
@@ -17,6 +19,7 @@
         android:textAllCaps="false"
         android:textColor="@android:color/darker_gray"
         android:textSize="24sp" />
+
 
     <EditText
         android:id="@+id/edtRondasAlerta"
@@ -99,6 +102,5 @@
             android:textAllCaps="true" />
 
     </LinearLayout>
-
 
 </LinearLayout>

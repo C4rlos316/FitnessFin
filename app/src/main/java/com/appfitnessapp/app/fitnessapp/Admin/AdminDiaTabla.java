@@ -80,9 +80,7 @@ public class AdminDiaTabla extends AppCompatActivity {
                 bundle.putString("id_plan",entrenamientos.get(recyclerView.getChildAdapterPosition(v)).getId_plan_ejercicio());
                 bundle.putString("descripcion",entrenamientos.get(recyclerView.getChildAdapterPosition(v)).getDescripcion_ejercicios());
                 bundle.putString("minutos",entrenamientos.get(recyclerView.getChildAdapterPosition(v)).getMin_ejercicio());
-                bundle.putString("nivel",entrenamientos.get(recyclerView.getChildAdapterPosition(v)).getNivel_ejercicio());
                 bundle.putString("numeros",entrenamientos.get(recyclerView.getChildAdapterPosition(v)).getNum_ejercicios());
-                bundle.putString("dias",entrenamientos.get(recyclerView.getChildAdapterPosition(v)).getDia_ejercicio());
                 intent.putExtras(bundle);
                 startActivity(intent);
 
