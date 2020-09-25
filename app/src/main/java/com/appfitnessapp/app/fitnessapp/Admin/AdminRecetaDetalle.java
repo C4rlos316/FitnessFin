@@ -20,7 +20,6 @@ import com.appfitnessapp.app.fitnessapp.Adapters.AdapterIngredientes;
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterPasos;
 import com.appfitnessapp.app.fitnessapp.Arrays.Ingredientes;
 import com.appfitnessapp.app.fitnessapp.Arrays.Preparacion;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -47,7 +46,6 @@ public class AdminRecetaDetalle extends AppCompatActivity {
     String imagenComida,nombre,tipo,porciones,calorias,minutos,idReceta,id,descripcion;
 
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
 
 
@@ -63,7 +61,6 @@ public class AdminRecetaDetalle extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){

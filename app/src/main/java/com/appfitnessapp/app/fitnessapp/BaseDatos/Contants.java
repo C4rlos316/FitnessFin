@@ -111,22 +111,30 @@ public class Contants {
     final public static String TARJETA = "tarjeta";
 
 
+    //tabla recetas
     final public static String TABLA_RECETAS = "tablaPlanAlimenticio";
     final public static String ALMUERZO = "almuerzo";
     final public static String DESAYUNO = "desayuno";
     final public static String CENA = "cena";
 
 
+
+    //tabla estadiscticas alimentos
     final public static String TABLA_ESTADISTICAS_ALIMENTOS = "estadisticas_alimentos";
     final public static String FECHA_CUMPLIDA = "fecha_cumplida";
     final public static String TIPO_ALIMENTO = "tipo_alimento";
 
 
+
+    //tabla estadisticas ejercicios
     final public static String TABLA_ESTADISTICAS_EJERCICIOS = "estadisticas_ejercicios";
     final public static String EJERCICIOS_REALIZADOS = "ejercicios_realizados";
     final public static String ID_ESTADISTICA = "id_estadistica";
 
 
+
+
+    //Formulario preguntas admin
     final public static String ID_ADMIN = "id_admin";
 
 
@@ -142,11 +150,12 @@ public class Contants {
     final public static String PREGUNTA_10 = "pregunta_10";
 
 
+
+    //tabla plan alimenticion
     final public static String TABLA_PLAN_ALIMENTICIO = "plan_alimenticio";
     final public static String ID_ALIMENTO = "id_plan_alimenticio";
 
 
-    //tipo_alimento
 
     //id_usuario
     final public static String NOMBRE_ALIMENTO = "nombre_alimento";
@@ -175,6 +184,8 @@ public class Contants {
     final public static String ID_PREPARACION = "id_preparacion";
 
 
+
+    //tabla plan ejercicio
     final public static String TABLA_PLAN_EJERCICIO = "plan_ejercicio";
     final public static String MIN_EJERCICIO = "min_ejercicio";
     final public static String NIVEL_EJERCICIO = "nivel_ejercicio";
@@ -183,6 +194,7 @@ public class Contants {
     final public static String ID_PLAN_EJERCICIO = "id_plan_ejercicio";
 
 
+    //tabla ejercicios
     final public static String EJERCICIOS = "ejercicios";
     final public static String NOMBRE_EJERCICIO = "nombre_ejercicio";
     final public static String RONDAS = "rondas";
@@ -192,17 +204,22 @@ public class Contants {
     final public static String ID_EJERCICIO = "id_ejercicio";
     final public static String DIA_EJERCICIO = "dia_ejercicio";
 
+
+    //spinner dias ejercicios admin
     final public static String[] dias_ejercicios = {"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
 
+    //spinner nivel ejercicio
     final public static String[] nivel_ejercicio = {"Alta", "Media", "Baja"};
 
 
 
+    //imagenes de ejercicios admin
     final public static String IMAGEN_1 = "imagen_1";
     final public static String IMAGEN_2 = "imagen_2";
     final public static String IMAGEN_3 = "imagen_3";
 
 
+    //tabla pdf
     final public static String TABLA_PDF="tabla_pdf_comprados";
     final public static String ID_PDF="id_pdf";
     final public static String URL_PDF="url_pdf";
@@ -215,6 +232,8 @@ public class Contants {
     final public static String FECHA_LIMITE ="fecha_limite";
     final public static String ID_PENDIENTE ="id_pendiente";
 
+
+    //chat
     public static final String ARG_USERS = "users";
     public static final String ARG_RECEIVER = "receiver";
     public static final String ARG_RECEIVER_UID = "receiver_uid";
@@ -224,23 +243,20 @@ public class Contants {
     public static final String ARG_UID = "uid";
 
 
-    final public static String ALTA_INTENSIDAD = "Alta";
-    final public static String BAJA_INTENSIDAD = "Baja";
-    final public static String MEDIA_INTENSIDAD = "Media";
 
-    final  public static String[] MESES = {"01","02","03","04","05","06","07","08","09","10","11","12"};
-    final  public static String[] ANIOS = {"19","20","21","22","23","24","25","26","27","28","29","30"};
-    final  public static String[] TIEMPO_ESTIMADO = {"10", "15", "20", "25", "30", "45","50","55","60","65","70","80","90","100","110","120"};
-    final  public static String[] PORCENTAJE = {"10%","20%","30%","40%","50%","60%","70%","80%"};
     final  public static String[] cantidad =  {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
 
+
+    //spinner usuario estatura
     final public static String[] estatura = {"1.45 cm","1.46 cm","1.47 cm","1.48 cm","1.49 cm","1.50 cm","1.51 cm","1.52 cm","1.53 cm",
             "1.54 cm","1.55 cm","1.56 cm","1.57 cm","1.58 cm","1.59 cm","1.60 cm","1.61 cm","1.62 cm","1.63 cm","1.64 cm","1.65 cm",
             "1.66 cm","1.67 cm","1.68 cm","1.69 cm","1.70 cm","1.71 cm","1.72 cm","1.73 cm","1.74 cm","1.75 cm","1.76 cm","1.77 cm",
             "1.78 cm","1.79 cm","1.80 cm","1.81 cm","1.82 cm","1.83 cm","1.84 cm","1.85 cm","1.86 cm","1.87 cm","1.88 cm","1.89 cm",
             "1.90 cm","1.91 cm","1.92 cm","1.93 cm","1.94 cm","1.95 cm","1.96 cm","1.97 cm","1.98 cm","1.99 cm","2.00 cm"};
 
+
+    //spinner usuario peso
 
     final public static String[] peso = {"35 Kg","36 Kg","37 Kg","38 Kg","39 Kg","40 Kg","41 Kg","42 Kg","43 Kg","44 Kg","45 Kg","46 Kg",
             "47 Kg","48 Kg","49 Kg","50 Kg","51 Kg","52 Kg","53 Kg","54 Kg","55 Kg","56 Kg","57 Kg","58 Kg","59 Kg","60 Kg","61 Kg",
@@ -252,6 +268,8 @@ public class Contants {
             "134 Kg","135 Kg","136 Kg","137 Kg","138 Kg","139 Kg","140 Kg","141 Kg","142 Kg","143 Kg","144 Kg","145 Kg","146 Kg","147 Kg",
             "148 Kg","149 Kg","150 Kg"};
 
+
+    //spinner usuario objetivos
 
     final public static String[] objetivos = {"Bajar de peso", "Musculatura", "Abdomen plano", "Aumentar masa muscular"};
 

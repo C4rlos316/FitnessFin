@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterPlanes;
 import com.appfitnessapp.app.fitnessapp.Arrays.Planes;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 
 import com.appfitnessapp.app.fitnessapp.R;
@@ -32,7 +31,6 @@ public class TipoPlanes extends AppCompatActivity {
     RecyclerView recyclerView;
     AdapterPlanes adapter;
     ArrayList<Planes> plan;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
 
@@ -51,7 +49,6 @@ public class TipoPlanes extends AppCompatActivity {
         getSupportActionBar().setTitle("Escoge un plan");
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        bajarInfo = new BajarInfo();
         dbProvider = new DBProvider();
 
         Bundle extras = getIntent().getExtras();

@@ -1,6 +1,5 @@
 package com.appfitnessapp.app.fitnessapp.Login;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +19,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.appfitnessapp.app.fitnessapp.Admin.AsesoriasAdmin;
+import com.appfitnessapp.app.fitnessapp.Admin.MenuAdmin.AsesoriasAdmin;
 import com.appfitnessapp.app.fitnessapp.Arrays.Inscritos;
 import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -39,18 +37,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.BaseMultiplePermissionsListener;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class SplashPantalla extends AppCompatActivity {
@@ -59,7 +51,6 @@ public class SplashPantalla extends AppCompatActivity {
 
     Button btnIniciarSesion,btnRegistro;
 
-    BajarInfo bajarInfo;
     DBProvider dbProvider;
 
 
@@ -96,7 +87,6 @@ public class SplashPantalla extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
 
-        bajarInfo = new BajarInfo();
         dbProvider = new DBProvider();
 
 

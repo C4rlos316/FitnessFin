@@ -12,7 +12,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanEntrenamiento;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 
@@ -29,7 +28,6 @@ public class AdminWorkouts extends AppCompatActivity {
     ImageView imgVideo,imgPrincipal;
 
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
 
     String descripcion,idEjercicio;
@@ -53,7 +51,6 @@ public class AdminWorkouts extends AppCompatActivity {
 
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
         bajarPlanEjercicios();
 
 

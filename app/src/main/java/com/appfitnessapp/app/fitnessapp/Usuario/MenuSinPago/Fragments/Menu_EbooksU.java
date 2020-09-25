@@ -1,7 +1,6 @@
 package com.appfitnessapp.app.fitnessapp.Usuario.MenuSinPago.Fragments;
 
 
-import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,30 +18,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterEbook;
-import com.appfitnessapp.app.fitnessapp.Adapters.AdapterFeed;
 import com.appfitnessapp.app.fitnessapp.Arrays.Feed;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.Login.IniciarSesion;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.appfitnessapp.app.fitnessapp.Usuario.DetallePdf;
-import com.appfitnessapp.app.fitnessapp.Usuario.Imagen;
 import com.appfitnessapp.app.fitnessapp.Usuario.PantallaPDF;
-import com.appfitnessapp.app.fitnessapp.videoplayer.VideoPlayer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.BaseMultiplePermissionsListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -56,7 +45,6 @@ public class Menu_EbooksU extends Fragment {
 
 
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
 
     AdapterEbook adapterFeed;
@@ -103,7 +91,6 @@ public class Menu_EbooksU extends Fragment {
         bajarFeed();
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
 
 
 

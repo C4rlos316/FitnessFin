@@ -49,7 +49,7 @@ public class FirebaseInstanceService extends FirebaseMessagingService {
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,"Notification",
                     NotificationManager.IMPORTANCE_DEFAULT);
 
-            notificationChannel.setDescription("EDM Channel");
+            notificationChannel.setDescription(" Channel");
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.BLUE);
             notificationChannel.setVibrationPattern(new long[]{0,1000,500,1000});

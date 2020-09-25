@@ -27,7 +27,6 @@ import com.appfitnessapp.app.fitnessapp.Adapters.AdapterImagenes;
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterRutinas;
 import com.appfitnessapp.app.fitnessapp.Arrays.Ejercicios;
 import com.appfitnessapp.app.fitnessapp.Arrays.ImagenesEjercicios;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -62,7 +61,6 @@ public class RutinaUsuario extends AppCompatActivity {
     String descripcion,idEjercicio,videoUrl,id_usuario,nombreEjercicio,idEje;
 
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -84,13 +82,29 @@ public class RutinaUsuario extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         id_usuario = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        switchEjercicio=findViewById(R.id.switchEjercicio);
 
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             descripcion = extras.getString("descripcion");
             idEjercicio = extras.getString("id");
-            bajarEjercicios();
+
+            if (idEjercicio==null){
+
+                descripcion="No hay ejercicios";
+                Toast.makeText(this, "No tienes ejercicios por el momento", Toast.LENGTH_SHORT).show();
+                switchEjercicio.setVisibility(View.GONE);
+
+            }
+
+            else {
+                bajarEjercicios();
+                switchEjercicio.setVisibility(View.VISIBLE);
+
+
+            }
+
 
         }
 
@@ -98,7 +112,6 @@ public class RutinaUsuario extends AppCompatActivity {
 
         imgRutina=findViewById(R.id.imgRutina);
 
-        switchEjercicio=findViewById(R.id.switchEjercicio);
 
 
         imgVideo=findViewById(R.id.imgVideo);
@@ -113,11 +126,22 @@ public class RutinaUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(RutinaUsuario.this, VideoPlayer.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("video",videoUrl);
-                intent.putExtras(bundle);
-                startActivity(intent);
+
+                if (videoUrl==null){
+
+                    Log.e("ID","No hay ejercicio");
+
+                }
+
+                else {
+                    Intent intent = new Intent(RutinaUsuario.this, VideoPlayer.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("video",videoUrl);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+
+
 
             }
         });

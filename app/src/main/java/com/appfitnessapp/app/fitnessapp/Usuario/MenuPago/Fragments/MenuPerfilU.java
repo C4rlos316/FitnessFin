@@ -20,7 +20,6 @@ import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appfitnessapp.app.fitnessapp.Arrays.EstadisticaAlimentos;
 import com.appfitnessapp.app.fitnessapp.Arrays.EstadisticaEjercicio;
@@ -29,7 +28,7 @@ import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.appfitnessapp.app.fitnessapp.Usuario.Calificar;
-import com.appfitnessapp.app.fitnessapp.Usuario.ChatActivityUsuario;
+import com.appfitnessapp.app.fitnessapp.Usuario.Chat.ChatActivityUsuario;
 import com.appfitnessapp.app.fitnessapp.Usuario.CustomBarChartRender;
 import com.appfitnessapp.app.fitnessapp.Usuario.EditarPerfil;
 import com.appfitnessapp.app.fitnessapp.Usuario.ListaComprado;

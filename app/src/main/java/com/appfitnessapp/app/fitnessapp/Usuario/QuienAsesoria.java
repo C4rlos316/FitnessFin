@@ -13,11 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterAdmin;
 import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -35,7 +33,6 @@ public class QuienAsesoria extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
 
     AdapterAdmin adapter;
 
@@ -53,7 +50,6 @@ public class QuienAsesoria extends AppCompatActivity {
 
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
 

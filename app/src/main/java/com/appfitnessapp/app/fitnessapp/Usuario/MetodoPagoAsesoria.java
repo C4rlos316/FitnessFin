@@ -18,7 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.Config;
-import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.PaymentAsesoria;
+import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.Payment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
@@ -186,7 +186,7 @@ public class MetodoPagoAsesoria extends AppCompatActivity {
                     try {
 
                         String paymentDetails = confirmation.toJSONObject().toString(4);
-                        startActivity(new Intent(this, PaymentAsesoria.class)
+                        startActivity(new Intent(this, Payment.class)
                                 .putExtra("PaymentDetails", paymentDetails)
                                 .putExtra("PaymentAmount", amount)
                                 .putExtra("id_usuario", id)

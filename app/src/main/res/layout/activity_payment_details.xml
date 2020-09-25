@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@drawable/aprobado"
     android:orientation="vertical"
-    tools:context=".Usuario.Paypal.PaymentDetails">
+    tools:context=".Usuario.Paypal.PaymentAsesoria">
 
     <TextView
         android:id="@+id/txtId"

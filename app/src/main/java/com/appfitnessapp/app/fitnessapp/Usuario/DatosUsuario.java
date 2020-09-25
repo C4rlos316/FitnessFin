@@ -212,6 +212,7 @@ public class DatosUsuario extends AppCompatActivity {
 
                         @Override
                         public void onFinish() {
+                            Toast.makeText(DatosUsuario.this, "Se guardaron tus datos correctamente.", Toast.LENGTH_LONG).show();
                             Intent intent=new Intent(DatosUsuario.this, Formulario.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             Bundle bundle = new Bundle();

@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.TextView;
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterDiaTabla;
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanEntrenamiento;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +33,6 @@ public class AdminDiaTabla extends AppCompatActivity {
     TextView btnAgregarDia;
 
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
 
     AdapterDiaTabla adapterDiaTabla;

@@ -10,9 +10,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.appfitnessapp.app.fitnessapp.Alarma.AlarmaCena;
-import com.appfitnessapp.app.fitnessapp.Alarma.AlarmaComida;
-import com.appfitnessapp.app.fitnessapp.Alarma.AlarmaDesayuno;
+import com.appfitnessapp.app.fitnessapp.Usuario.Alarma.AlarmaCena;
+import com.appfitnessapp.app.fitnessapp.Usuario.Alarma.AlarmaComida;
+import com.appfitnessapp.app.fitnessapp.Usuario.Alarma.AlarmaDesayuno;
 import com.appfitnessapp.app.fitnessapp.R;
 
 public class ListaRecordatorio extends AppCompatActivity {

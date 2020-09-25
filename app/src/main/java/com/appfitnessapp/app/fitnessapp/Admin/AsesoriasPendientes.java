@@ -19,9 +19,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterAsesorias;
+import com.appfitnessapp.app.fitnessapp.Admin.MenuAdmin.AsesoriasAdmin;
+import com.appfitnessapp.app.fitnessapp.Admin.MenuAdmin.ListaChat;
+import com.appfitnessapp.app.fitnessapp.Admin.MenuAdmin.FormularioLista;
+import com.appfitnessapp.app.fitnessapp.Admin.MenuAdmin.AdminAgregarFeed;
 import com.appfitnessapp.app.fitnessapp.Arrays.Inscritos;
 import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -47,7 +50,6 @@ public class AsesoriasPendientes extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
 
 
 
@@ -70,7 +72,6 @@ public class AsesoriasPendientes extends AppCompatActivity {
         bajarInscritos();
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
 

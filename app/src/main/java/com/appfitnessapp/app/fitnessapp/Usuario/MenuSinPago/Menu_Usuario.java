@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.Login.IniciarSesion;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -40,7 +39,6 @@ public class Menu_Usuario extends AppCompatActivity
 
 
 
-    BajarInfo bajarInfo;
     DBProvider dbProvider;
 
 
@@ -64,7 +62,6 @@ public class Menu_Usuario extends AppCompatActivity
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
 
-        bajarInfo = new BajarInfo();
         dbProvider = new DBProvider();
 
 

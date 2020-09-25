@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanEntrenamiento;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +34,6 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
     ImageView imgVideo,imgPrincipal;
 
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
 
     String descripcion,idEjercicio;
@@ -62,7 +60,6 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
 
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
         bajarPlanEjercicios();
 
         id = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -145,14 +142,16 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
                                     }
 
                                     else  {
-                                        imgVideo.setVisibility(View.INVISIBLE);
+                                       // imgVideo.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
                                     }
 
                                     }
+                                progressDialog.dismiss();
 
 
-                                }
+
+                            }
 
                            else if (fechaAc==2){
 
@@ -171,13 +170,15 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
                                     }
 
                                     else {
-                                        imgVideo.setVisibility(View.INVISIBLE);
+                                       // imgVideo.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
 
                                     }
 
 
                                 }
+
+                                progressDialog.dismiss();
 
 
                             }
@@ -197,7 +198,7 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
                                     }
 
                                     else {
-                                        imgVideo.setVisibility(View.INVISIBLE);
+                                       // imgVideo.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
 
 
@@ -205,6 +206,8 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
 
 
                                 }
+
+                                progressDialog.dismiss();
 
 
 
@@ -226,13 +229,15 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
 
 
                                     else {
-                                        imgVideo.setVisibility(View.INVISIBLE);
+                                       // imgVideo.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
 
 
                                     }
 
                                 }
+                                progressDialog.dismiss();
+
 
                             }
                             else if (fechaAc==5){
@@ -252,13 +257,14 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
 
                                     else    {
 
-                                        imgVideo.setVisibility(View.INVISIBLE);
+                                      //  imgVideo.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
 
 
                                     }
 
                                 }
+                                progressDialog.dismiss();
 
 
                             }
@@ -279,7 +285,7 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
 
                                     else    {
 
-                                        imgVideo.setVisibility(View.INVISIBLE);
+                                       // imgVideo.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
 
 
@@ -288,6 +294,8 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
 
 
                                 }
+                                progressDialog.dismiss();
+
 
 
 
@@ -308,17 +316,19 @@ public class UsuarioPlanWorkouts extends AppCompatActivity {
 
                                     }
                                     else    {
-                                        imgVideo.setVisibility(View.INVISIBLE);
+                                      //  imgVideo.setVisibility(View.INVISIBLE);
                                         progressDialog.dismiss();
 
                                     }
                                 }
+                                progressDialog.dismiss();
+
 
 
                             }
 
                             else {
-                                    imgVideo.setVisibility(View.INVISIBLE);
+                                   // imgVideo.setVisibility(View.INVISIBLE);
                                     progressDialog.dismiss();
                             }
 

@@ -10,10 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.appfitnessapp.app.fitnessapp.Admin.ChatAdmin.ChatActivityAdmin;
 import com.appfitnessapp.app.fitnessapp.Arrays.EstadisticaAlimentos;
 import com.appfitnessapp.app.fitnessapp.Arrays.EstadisticaEjercicio;
 import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
@@ -57,7 +58,6 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
 
 
 
@@ -111,7 +111,6 @@ public class PerfilUsuarioAdmin extends AppCompatActivity {
 
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
 

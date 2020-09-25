@@ -22,22 +22,16 @@ import android.widget.Toast;
 import com.appfitnessapp.app.fitnessapp.Adapters.AdapterRecetas;
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanAlimenticio;
 import com.appfitnessapp.app.fitnessapp.Arrays.PlanEntrenamiento;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.Contants;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
-import com.appfitnessapp.app.fitnessapp.Usuario.DatosUsuario;
 import com.appfitnessapp.app.fitnessapp.Usuario.DetalleRecetas;
-import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.PaymentDetails;
-import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioPlan;
 import com.appfitnessapp.app.fitnessapp.Usuario.UsuarioPlanWorkouts;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 
 public class MenuAsesoriaPago extends Fragment {
@@ -53,7 +47,6 @@ public class MenuAsesoriaPago extends Fragment {
     TextView btnWorkouts;
 
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     private static final String TAG = "BAJARINFO:";
 
 
@@ -80,7 +73,6 @@ public class MenuAsesoriaPago extends Fragment {
 
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
 
         id_usuario = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -140,32 +132,13 @@ public class MenuAsesoriaPago extends Fragment {
             @Override
             public void onClick(View v) {
 
-                progressDialog.setMessage("Cargando Información...");
-                progressDialog.show();
-                progressDialog.setCancelable(false);
-
-                new CountDownTimer(5000,1){
-
-                    @Override
-                    public void onTick(long l) {
-
-                    }
-
-                    @Override
-                    public void onFinish() {
-
-                        progressDialog.dismiss();
-                        bajarPlanEjercicios(id_usuario);
-
-
-
-                    }
-                }.start();
-
-
-
+                Intent intent = new Intent(getContext(), UsuarioPlanWorkouts.class);
+                startActivity(intent);
 
             }
+
+
+
         });
 
 
@@ -329,71 +302,6 @@ public class MenuAsesoriaPago extends Fragment {
                 Log.e(TAG, "ERROR: ");
             }
         });
-
-    }
-
-
-
-    public void bajarPlanEjercicios( final String id){
-
-
-        progressDialog.setMessage("Cargando Información...");
-        progressDialog.show();
-        progressDialog.setCancelable(false);
-        dbProvider = new DBProvider();
-        dbProvider.tablaPlanEntrenamiento().addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Log.e(TAG, "Feed: " + dataSnapshot);
-                        PlanEntrenamiento planEntrenamiento = snapshot.getValue(PlanEntrenamiento.class);
-
-
-                        if (planEntrenamiento.getId_plan_ejercicio()!=null) {
-
-                            if (planEntrenamiento.getId_usuario().equals(id)){
-
-                               pantalla();
-
-                            }
-
-                            else {
-                                progressDialog.dismiss();
-                                //Toast.makeText(getContext(), "No hay ejercicios por el momento.", Toast.LENGTH_SHORT).show();
-                            }
-
-
-                        }
-
-
-                    }
-
-                }
-
-
-
-                else {
-                    Log.e(TAG, "Feed: ");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "ERROR: ");
-            }
-        });
-
-    }
-
-
-
-    public void pantalla(){
-
-        Intent intent = new Intent(getContext(), UsuarioPlanWorkouts.class);
-        Bundle bundle = new Bundle();
-        intent.putExtras(bundle);
-        startActivity(intent);
 
     }
 

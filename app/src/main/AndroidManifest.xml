@@ -24,9 +24,9 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Admin.AdminDiaTabla"></activity>
         <activity android:name=".Admin.AdminEditarEjercicio"/>
-        <activity android:name=".Admin.EditarAsesoria" />
-        <activity android:name=".Admin.AgregarPlanes" />
-        <activity android:name=".Admin.AdminPlanes" />
+        <activity android:name=".Admin.AgregarElementosFeed.EditarAsesoria" />
+        <activity android:name=".Admin.AgregarElementosFeed.Planes.AgregarPlanes" />
+        <activity android:name=".Admin.AgregarElementosFeed.Planes.AdminPlanes" />
         <activity
             android:name=".Usuario.MenuPago.Menu_UsuarioPago"
             android:label="@string/title_activity_menu__usuario"
@@ -72,15 +72,15 @@
         <activity android:name=".Usuario.PantallaPDF" />
         <activity android:name=".Usuario.Imagen" />
         <activity
-            android:name=".Usuario.ChatActivityUsuario"
+            android:name=".Usuario.Chat.ChatActivityUsuario"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Login.OlvidarContrasena"
             android:parentActivityName=".Login.IniciarSesion"
             android:screenOrientation="portrait" />
-        <activity android:name=".Usuario.Paypal.PaymentDetails" />
-        <activity android:name=".Usuario.Paypal.PaymentPdf" />
         <activity android:name=".Usuario.Paypal.PaymentAsesoria" />
+        <activity android:name=".Usuario.Paypal.PaymentPdf" />
+        <activity android:name=".Usuario.Paypal.Payment" />
         <activity
             android:name=".Usuario.Tarjeta"
             android:screenOrientation="portrait" />
@@ -139,7 +139,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/YourTheme" />
         <activity
-            android:name=".Usuario.ChatFragmentUsuario"
+            android:name=".Usuario.Chat.ChatFragmentUsuario"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Usuario.MetodoPagoPdf"
@@ -151,24 +151,24 @@
             android:name=".Usuario.ListaRecordatorio"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Alarma.AlarmaDesayuno"
+            android:name=".Usuario.Alarma.AlarmaDesayuno"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Alarma.AlarmaComida"
+            android:name=".Usuario.Alarma.AlarmaComida"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Alarma.AlarmaCena"
+            android:name=".Usuario.Alarma.AlarmaCena"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Usuario.MetodoPagoAsesoria"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".Alarma.AlertaRecibidaDesayuno" />
-        <receiver android:name=".Alarma.AlertaRecibidaComida" />
-        <receiver android:name=".Alarma.AlertaRecibidaCena" />
+        <receiver android:name=".Usuario.Alarma.AlertaRecibidaDesayuno" />
+        <receiver android:name=".Usuario.Alarma.AlertaRecibidaComida" />
+        <receiver android:name=".Usuario.Alarma.AlertaRecibidaCena" />
 
         <activity
-            android:name=".Admin.AsesoriasAdmin"
+            android:name=".Admin.MenuAdmin.AsesoriasAdmin"
             android:screenOrientation="portrait"
             android:theme="@style/YourTheme" />
         <activity
@@ -219,16 +219,16 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Compra.Compra" />
         <activity
-            android:name=".Admin.AgregarVideo"
+            android:name=".Admin.AgregarElementosFeed.AgregarVideo"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AgregarPdf"
+            android:name=".Admin.AgregarElementosFeed.AgregarPdf"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AgregarImagen"
+            android:name=".Admin.AgregarElementosFeed.AgregarImagen"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AdminAgregarFeed"
+            android:name=".Admin.MenuAdmin.AdminAgregarFeed"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Admin.EditarRecetaU"
@@ -249,34 +249,34 @@
             android:name=".Admin.EjerciciosLista"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.ChatFragmentAdmin"
+            android:name=".Admin.ChatAdmin.ChatFragmentAdmin"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.ChatActivityAdmin"
+            android:name=".Admin.ChatAdmin.ChatActivityAdmin"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.ListaChat"
+            android:name=".Admin.MenuAdmin.ListaChat"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Admin.FormularioUsuario"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.FormularioLista"
+            android:name=".Admin.MenuAdmin.FormularioLista"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AgregarPregunta"
+            android:name=".Admin.Formulario.AgregarPregunta"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.EditarPregunta"
+            android:name=".Admin.Formulario.EditarPregunta"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AgregarRecetarios"
+            android:name=".Admin.AgregarElementosFeed.AgregarRecetarios"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AgregarEbooks"
+            android:name=".Admin.AgregarElementosFeed.AgregarEbooks"
             android:screenOrientation="portrait" />
-        <activity android:name=".Admin.EditarPlanes" />
-        <activity android:name=".Admin.AgregarRutinas" />
+        <activity android:name=".Admin.AgregarElementosFeed.Planes.EditarPlanes" />
+        <activity android:name=".Admin.AgregarElementosFeed.AgregarRutinas" />
 
         <service android:name=".Notificaciones.FirebaseInstanceService">
             <intent-filter>

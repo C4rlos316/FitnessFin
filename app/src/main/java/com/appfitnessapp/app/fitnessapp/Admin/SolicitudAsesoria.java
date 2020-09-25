@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.appfitnessapp.app.fitnessapp.Arrays.Usuarios;
-import com.appfitnessapp.app.fitnessapp.BaseDatos.BajarInfo;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +37,6 @@ public class SolicitudAsesoria extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private static final String TAG = "BAJARINFO:";
     static DBProvider dbProvider;
-    BajarInfo bajarInfo;
     String id;
 
     @Override
@@ -60,7 +58,6 @@ public class SolicitudAsesoria extends AppCompatActivity {
         bajarUsuarios();
 
         dbProvider = new DBProvider();
-        bajarInfo = new BajarInfo();
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
 

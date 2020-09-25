@@ -18,7 +18,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.appfitnessapp.app.fitnessapp.BaseDatos.DBProvider;
 import com.appfitnessapp.app.fitnessapp.R;
 import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.Config;
-import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.PaymentDetails;
 import com.appfitnessapp.app.fitnessapp.Usuario.Paypal.PaymentPdf;
 import com.google.firebase.auth.FirebaseAuth;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
